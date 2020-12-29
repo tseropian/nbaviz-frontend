@@ -2,8 +2,9 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import VueApollo from 'vue-apollo'
 import ApolloClient from 'apollo-boost'
-import router from './router'
+import VueApexCharts from 'vue-apexcharts'
 
+import router from './router'
 import App from './App.vue'
 
 const apolloClient = new ApolloClient({
@@ -16,6 +17,9 @@ const apolloProvider = new VueApollo({
 
 Vue.use(VueRouter)
 Vue.use(VueApollo)
+Vue.use(VueApexCharts)
+
+Vue.component('apexchart', VueApexCharts)
 Vue.config.productionTip = false
 
 new Vue({
