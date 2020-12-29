@@ -13,7 +13,7 @@ export default new Router({
       component: Home
     },
     {
-      path: '/season/2006',
+      path: '/season/:year',
       name: 'Season',
       component: Season
     },

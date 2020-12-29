@@ -1,6 +1,7 @@
 <template>
   <div>
 SEASON
+<div>Year {{ $route.params.year }}</div>
   </div>
 </template>
 
