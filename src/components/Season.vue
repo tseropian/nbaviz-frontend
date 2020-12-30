@@ -2,6 +2,9 @@
   <div>
     SEASON {{ $route.params.year }}
  
+    <input v-model="currentTeams" placeholder="edit me" @change="onChangeTeam($event)">
+    {{ currentTeams }}
+
     <template>
       <div>
         <apexchart width="980" type="line" :options="options" :series="series"></apexchart>
@@ -16,17 +19,19 @@
 import gql from 'graphql-tag'
 
 export default {
-  name: 'HelloWorld',
-  mounted() {
-    console.log('created called.');
-    console.log()
-    console.log(process.env);//.GRAPHQL_HOST)
-    // console.log(GRAPHQL_HOST)
+  name: 'Season',
+  created() {
     this.buildSeason();
+  },
+  async mounted() {
+    console.log('I have been mounted')
+      await this.fetchRankings()
     this.series = this.buildSeries();
+
   },
   data: () => ({
     currentSeason: 0,
+    currentTeams: 'SEA',
     options: {
       chart: {
         id: 'vuechart-example'
@@ -46,6 +51,12 @@ export default {
          "Nov",
          "Dec"
         ]
+      },
+      yaxis: {
+        reversed: true,
+        min:1,
+        max:15,
+       
       }
     },
     series: [],
@@ -82,9 +93,10 @@ export default {
       },
       xaxis: {
         categories: ['01 Jan', '02 Jan', '03 Jan', '04 Jan', '05 Jan', '06 Jan', '07 Jan', '08 Jan', '09 Jan',
-          '10 Jan', '11 Jan', '12 Jan'
+          '10 Jan', '11 Jan', '12 Jan',
         ],
       },
+
       tooltip: {
         y: [
           {
@@ -124,38 +136,65 @@ export default {
         colour, key, name, city
       }
     }`,
-    seasons: gql`query{
-      seasons(year: "2006"){
-        year, startDate, endDate
-      }
-    }`,
-    rankings: gql`query{
-      rankings(season: "2006", teams: "MIA") {
-        team, position
-      }
-    }`,
+    seasons: {
+      query: gql`query Year($year: String!) {
+        seasons(year: $year){
+          year, startDate, endDate
+        }
+      }`,
+      variables () {
+        return {
+            year: this.$route.params.year
+        }
+      },
+    },   
   },
   methods:{
     buildSeason() {
       console.log('Lets go')
-      console.log(this.teams)
+      console.log('Ranking for teams: ' + this.currentTeams)
+      this.currentSeason = this.$route.params.year;
     },
-
+    async fetchRankings() {
+      const { data } = await this.$apollo.query({
+        query: gql`
+          query Team(
+            $teams: String
+          ) {
+            rankings(
+              season: "2006", 
+              teams: $teams
+            ) {
+              team, 
+              position, 
+              date, 
+              wins, 
+              losses
+            }
+          }`,
+      variables: {
+        teams: this.currentTeams
+      }  
+      }); 
+      this.rankings = data.rankings;
+    },
     buildSeries() {
-      return [
-      {
-        name: "Session Duration",
-        data: [45, 52, 38, 24, 33, 26, 21, 20, 6, 8, 15, 10]
-      },
-      {
-        name: "Page Views",
-        data: [35, 41, 62, 42, 13, 18, 29, 37, 36, 51, 32, 35]
-      },
-      {
-        name: 'Total Visits',
-        data: [87, 57, 74, 99, 75, 38, 62, 47, 82, 56, 45, 47]
+      const serie = {
+        name: this.currentTeams,
+        data: []
       }
-    ]
+      let i=0;
+      for (let rank of this.rankings) {
+        if (i < 12) {
+          serie.data.push(15 - rank.position)
+        }
+        i++;
+      }
+      return [serie];
+    },
+    async onChangeTeam() {
+      await this.fetchRankings()
+      this.series = this.buildSeries();
     }
   }
 }

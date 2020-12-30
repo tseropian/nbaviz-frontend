@@ -4,7 +4,7 @@
     NBA Rankings per season
     <ul id="example-1">
       <li v-for="season in seasons" :key="season.year">
-        <a :href="'/season/' + season.year">
+        <a :href="'/#/season/' + season.year">
           {{ season.year }}
         </a>
       </li>
