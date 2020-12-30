@@ -12,12 +12,16 @@
 </template>
 
 <script>
+
 import gql from 'graphql-tag'
 
 export default {
   name: 'HelloWorld',
   mounted() {
     console.log('created called.');
+    console.log()
+    console.log(process.env);//.GRAPHQL_HOST)
+    // console.log(GRAPHQL_HOST)
     this.buildSeason();
     this.series = this.buildSeries();
   },

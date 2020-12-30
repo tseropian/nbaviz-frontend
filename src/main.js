@@ -9,7 +9,7 @@ import App from './App.vue'
 
 const apolloClient = new ApolloClient({
   // You should use an absolute URL here
-  uri: 'http://localhost:4000/graphql'
+  uri: process.env.VUE_APP_GRAPHQL_HOST
 })
 const apolloProvider = new VueApollo({
   defaultClient: apolloClient,
