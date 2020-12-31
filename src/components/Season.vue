@@ -22,16 +22,18 @@ export default {
   name: 'Season',
   created() {
     this.buildSeason();
+        this.teamRankings = [];
+
   },
   async mounted() {
     console.log('I have been mounted')
-      await this.fetchRankings()
-    this.series = this.buildSeries();
+    this.onChangeTeam();
 
   },
   data: () => ({
     currentSeason: 0,
     currentTeams: 'SEA',
+    teamRankings: ['qwqwq'],
     options: {
       chart: {
         id: 'vuechart-example'
@@ -155,7 +157,7 @@ export default {
       console.log('Ranking for teams: ' + this.currentTeams)
       this.currentSeason = this.$route.params.year;
     },
-    async fetchRankings() {
+    async fetchRankings(team) {
       const { data } = await this.$apollo.query({
         query: gql`
           query Team(
@@ -173,28 +175,48 @@ export default {
             }
           }`,
       variables: {
-        teams: this.currentTeams
+        teams: team
       }  
       }); 
-      this.rankings = data.rankings;
+      return data.rankings
     },
-    buildSeries() {
-      const serie = {
-        name: this.currentTeams,
-        data: []
-      }
-      let i=0;
-      for (let rank of this.rankings) {
-        if (i < 12) {
-          serie.data.push(15 - rank.position)
+    buildSeries(allRankings) {
+
+      const listTeams = this.currentTeams.split(',');
+      let series = [];
+      for (let team of listTeams) {
+        const serie = {
+          name: team,
+          data: []
         }
-        i++;
+
+        let i = 0;
+        const rankings = allRankings[team];
+        
+        for (let rank of rankings) {
+          if (i < 12) {
+            serie.data.push(rank.position)
+          }
+          i++;
+        }
+        
+        series.push(serie)
       }
-      return [serie];
+      return series;
     },
+
     async onChangeTeam() {
-      await this.fetchRankings()
-      this.series = this.buildSeries();
+      const listTeams = this.currentTeams.split(',');
+      let allRankings = [];
+      
+      for (let team of listTeams) {
+        const rankings = await this.fetchRankings(team);
+        allRankings[team] = rankings;
+      }
+
+      this.series = this.buildSeries(allRankings);
+
+      console.log(this.series)
     }
   }
 }
