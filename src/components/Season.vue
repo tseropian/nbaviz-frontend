@@ -7,7 +7,7 @@
 
     <template>
       <div>
-        <apexchart width="980" type="line" :options="options" :series="series"></apexchart>
+        <apexchart width="1440" type="line" :options="options" :series="series"></apexchart>
       </div>
     </template>
 
@@ -17,6 +17,7 @@
 <script>
 
 import gql from 'graphql-tag'
+import dateFormat from 'dateformat'
 
 export default {
   name: 'Season',
@@ -34,37 +35,11 @@ export default {
     currentSeason: 0,
     currentTeams: 'SEA',
     teamRankings: ['qwqwq'],
+    series: [],
     options: {
       chart: {
-        id: 'vuechart-example'
-      },
-      xaxis: {
-        categories: [
-         "Jan",
-         "Feb",
-         "Mar",
-         "Apr",
-         "May",
-         "Jun",
-         "Jul",
-         "Aug",
-         "Sep",
-         "Oct",
-         "Nov",
-         "Dec"
-        ]
-      },
-      yaxis: {
-        reversed: true,
-        min:1,
-        max:15,
-       
-      }
-    },
-    series: [],
-    chartOptions: {
-      chart: {
-        height: 350,
+        id: 'vuechart-example',
+        height: 200,
         type: 'line',
         zoom: {
           enabled: false
@@ -79,12 +54,12 @@ export default {
         dashArray: [0, 8, 5]
       },
       title: {
-        text: 'Page Statistics',
+        text: 'Regular Season Ranking (per Conference)',
         align: 'left'
       },
       legend: {
         tooltipHoverFormatter: function(val, opts) {
-          return val + ' - ' + opts.w.globals.series[opts.seriesIndex][opts.dataPointIndex] + ''
+          return val + ' - ' + opts.w.globals.series[opts.seriesIndex][opts.dataPointIndex] + 'ploplo '
         }
       },
       markers: {
@@ -93,12 +68,20 @@ export default {
           sizeOffset: 6
         }
       },
-      xaxis: {
-        categories: ['01 Jan', '02 Jan', '03 Jan', '04 Jan', '05 Jan', '06 Jan', '07 Jan', '08 Jan', '09 Jan',
-          '10 Jan', '11 Jan', '12 Jan',
-        ],
-      },
 
+      xaxis: {
+        categories: [],
+
+      },
+      yaxis: {
+        reversed: true,
+        min: 1,
+        max: 15,
+        title: {
+          text: 'Ranking'
+        },
+       
+      },
       tooltip: {
         y: [
           {
@@ -127,10 +110,7 @@ export default {
       grid: {
         borderColor: '#f1f1f1',
       }
-    },
-          
-          
-        
+    },        
   }),
   apollo: {
     teams: gql`query{
@@ -161,10 +141,11 @@ export default {
       const { data } = await this.$apollo.query({
         query: gql`
           query Team(
-            $teams: String
+            $teams: String,
+            $year: String,
           ) {
             rankings(
-              season: "2006", 
+              season: $year, 
               teams: $teams
             ) {
               team, 
@@ -175,7 +156,8 @@ export default {
             }
           }`,
       variables: {
-        teams: team
+        teams: team,
+        year: this.currentSeason
       }  
       }); 
       return data.rankings
@@ -184,25 +166,24 @@ export default {
 
       const listTeams = this.currentTeams.split(',');
       let series = [];
-      for (let team of listTeams) {
-        const serie = {
-          name: team,
-          data: []
-        }
+      let labels = [];
 
-        let i = 0;
-        const rankings = allRankings[team];
-        
-        for (let rank of rankings) {
-          if (i < 12) {
-            serie.data.push(rank.position)
-          }
-          i++;
-        }
-        
-        series.push(serie)
+      for (let team of listTeams) {
+        const rankings = allRankings[team];        
+        const data = rankings.map((s) => {
+          const formattedDate = new Date(Number(s.date));          
+          return {
+            x: dateFormat(formattedDate, 'yyyy-mm-dd'), 
+            y: s.position
+          };
+        });
+
+        series.push({
+          name: team,
+          data
+        });
       }
-      return series;
+      return {value: series, labels};
     },
 
     async onChangeTeam() {
@@ -210,13 +191,11 @@ export default {
       let allRankings = [];
       
       for (let team of listTeams) {
-        const rankings = await this.fetchRankings(team);
-        allRankings[team] = rankings;
+        allRankings[team] = await this.fetchRankings(team);
       }
 
-      this.series = this.buildSeries(allRankings);
-
-      console.log(this.series)
+      const {value} = this.buildSeries(allRankings);
+      this.series = value; 
     }
   }
 }
