@@ -10,8 +10,13 @@
         <apexchart width="1440" type="line" :options="options" :series="series"></apexchart>
       </div>
     </template>
-
+{{ availableTeams.length }}
+<!-- {{ teams }} -->
+        <span v-for="team in availableTeams" :key="team.key">
+          {{ team.key }}
+        </span>
   </div>
+
 </template>
 
 <script>
@@ -23,7 +28,7 @@ export default {
   name: 'Season',
   created() {
     this.buildSeason();
-        this.teamRankings = [];
+    this.teamRankings = [];
 
   },
   async mounted() {
@@ -34,6 +39,7 @@ export default {
   data: () => ({
     currentSeason: 0,
     currentTeams: 'SEA',
+    availableTeams: [],
     teamRankings: ['qwqwq'],
     series: [],
     options: {
@@ -87,20 +93,6 @@ export default {
           {
             title: {
               formatter: function (val) {
-                return val + " (mins)"
-              }
-            }
-          },
-          {
-            title: {
-              formatter: function (val) {
-                return val + " per session"
-              }
-            }
-          },
-          {
-            title: {
-              formatter: function (val) {
                 return val;
               }
             }
@@ -113,11 +105,6 @@ export default {
     },        
   }),
   apollo: {
-    teams: gql`query{
-      teams {
-        colour, key, name, city
-      }
-    }`,
     seasons: {
       query: gql`query Year($year: String!) {
         seasons(year: $year){
@@ -132,15 +119,40 @@ export default {
     },   
   },
   methods:{
-    buildSeason() {
+    async buildSeason() {
       console.log('Lets go')
       console.log('Ranking for teams: ' + this.currentTeams)
       this.currentSeason = this.$route.params.year;
+      this.availableTeams = await this.fetchTeams(this.currentSeason);
+    },
+    async fetchTeams() {
+
+      const { data } = await this.$apollo.query({
+        query: gql`
+          query Team(
+            $year: Int,
+          ) {
+            teams(
+              year: $year
+            ) {
+              key,
+              city, 
+              name, 
+              colour
+            }
+          }`,
+      variables: {
+        year: Number(this.currentSeason)
+      }  
+      })
+      .catch(err => console.log(err)); 
+      console.log(data)
+      return data.teams      
     },
     async fetchRankings(team) {
       const { data } = await this.$apollo.query({
         query: gql`
-          query Team(
+          query Rankings(
             $teams: String,
             $year: String,
           ) {
