@@ -1,6 +1,7 @@
 <template>
 
   <div>
+    <h1 class="text-4xl">Hoopcharts</h1>
     NBA Rankings per season
     <ul id="example-1">
       <li v-for="season in seasons" :key="season.year">

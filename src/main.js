@@ -6,6 +6,7 @@ import VueApexCharts from 'vue-apexcharts'
 
 import router from './router'
 import App from './App.vue'
+import './assets/styles/index.css';
 
 const apolloClient = new ApolloClient({
   // You should use an absolute URL here
