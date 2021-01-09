@@ -1,20 +1,29 @@
 <template>
   <div>
-    SEASON {{ $route.params.year }}
- 
-    <input v-model="currentTeams" placeholder="edit me" @change="onChangeTeam($event)">
-    {{ currentTeams }}
+    SEASON: {{ $route.params.year }}
+    <br />
+    TEAMS: {{ currentTeams }}
 
     <template>
-      <div>
-        <apexchart width="1440" type="line" :options="options" :series="series"></apexchart>
+      <div style="margin:auto 0; padding-left: 100px; height: 500px;border:1px solid red;">
+        <apexchart type="line" width="800" :options="options" :series="series"></apexchart>
       </div>
     </template>
-{{ availableTeams.length }}
+<button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" @click="setConference('E')" style="border:1px solid blue;">Eastern Conference</button>
+<br /><br />
+<button class="bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" @click="setConference('W')">Western Conference</button>
 <!-- {{ teams }} -->
-        <span v-for="team in availableTeams" :key="team.key">
-          {{ team.key }}
-        </span>
+<br /><br />
+
+<button v-for="team in confTeams" :key="team.key" @click="onAddTeam(team.key)" class="border-solid	border-1 border-gray-900 py-2 px-4 rounded">
+  {{ team.key }}
+</button>
+<br /><br />
+
+<button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" @click="resetTeams();">
+  Reset
+</button>
+
   </div>
 
 </template>
@@ -23,6 +32,7 @@
 
 import gql from 'graphql-tag'
 import dateFormat from 'dateformat'
+import '../assets/styles/index.css';
 
 export default {
   name: 'Season',
@@ -38,14 +48,16 @@ export default {
   },
   data: () => ({
     currentSeason: 0,
-    currentTeams: 'SEA',
+    currentTeams: '',
+    currentConference: 'E',
     availableTeams: [],
+    confTeams: [],
     teamRankings: ['qwqwq'],
     series: [],
     options: {
       chart: {
         id: 'vuechart-example',
-        height: 200,
+        height: '100%',
         type: 'line',
         zoom: {
           enabled: false
@@ -54,11 +66,7 @@ export default {
       dataLabels: {
         enabled: false
       },
-      stroke: {
-        width: [5, 7, 5],
-        curve: 'straight',
-        dashArray: [0, 8, 5]
-      },
+
       title: {
         text: 'Regular Season Ranking (per Conference)',
         align: 'left'
@@ -71,7 +79,7 @@ export default {
       markers: {
         size: 0,
         hover: {
-          sizeOffset: 6
+          sizeOffset: -10
         }
       },
 
@@ -120,8 +128,10 @@ export default {
   },
   methods:{
     async buildSeason() {
+      console.log('PPPP', this.$route.params.team)
       console.log('Lets go')
       console.log('Ranking for teams: ' + this.currentTeams)
+      this.currentTeams = this.$route.params.team || 'SEA'
       this.currentSeason = this.$route.params.year;
       this.availableTeams = await this.fetchTeams(this.currentSeason);
     },
@@ -138,7 +148,8 @@ export default {
               key,
               city, 
               name, 
-              colour
+              colour,
+              conference
             }
           }`,
       variables: {
@@ -197,7 +208,10 @@ export default {
       }
       return {value: series, labels};
     },
-
+    onAddTeam(team) {
+      this.currentTeams = this.currentTeams + ',' + team;
+      this.onChangeTeam();
+    },
     async onChangeTeam() {
       const listTeams = this.currentTeams.split(',');
       let allRankings = [];
@@ -208,6 +222,16 @@ export default {
 
       const {value} = this.buildSeries(allRankings);
       this.series = value; 
+    },
+    filterTeams() {
+      this.confTeams =  this.availableTeams.filter(t => t.conference === this.currentConference);
+   },
+    setConference(conf) {
+      this.currentConference = conf;
+      this.filterTeams();
+    },
+    resetTeams() {
+      this.currentTeams = '';
     }
   }
 }
