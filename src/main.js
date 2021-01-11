@@ -6,6 +6,23 @@ import VueApexCharts from 'vue-apexcharts'
 
 import router from './router'
 import App from './App.vue'
+import './assets/styles/index.css';
+
+import * as Sentry from "@sentry/browser";
+import { Integrations } from "@sentry/tracing";
+
+Sentry.init({
+  Vue,
+  dsn: "https://180319df06ff47a99980c414f6b1cda4@o502152.ingest.sentry.io/5585809",
+  autoSessionTracking: true,
+  integrations: [
+    new Integrations.BrowserTracing(),
+  ],
+
+  // We recommend adjusting this value in production, or using tracesSampler
+  // for finer control
+  tracesSampleRate: 1.0,
+});
 
 const apolloClient = new ApolloClient({
   // You should use an absolute URL here
