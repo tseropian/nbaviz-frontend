@@ -1,30 +1,17 @@
 <template>
 
-  <div>
+  <div id="home">
     
 
-    <h1 class="text-4xl"><img alt="Vue logo" class="mx-auto w-20" src="../assets/basketball.png">Hoopcharts</h1>
-    NBA Rankings per season
-    <ul id="example-1">
-      <li v-for="season in seasons" :key="season.year">
-        <a :href="'/#/season/' + season.year">
-          {{ season.year }}
-        </a>
-      </li>
-</ul>  
+    <img alt="Basketball logo" class="mx-auto w-40" src="../assets/basketball.png">
+    <h1 class="text-4xl">Nerdy NBA data visualisations</h1>
+    
+
   </div>
 </template>
-
-<script>
-import gql from 'graphql-tag'
-
-export default {
-  apollo: {
-    seasons: gql`query{
-      seasons {
-        year
-      }
-    }`,
-  },
+<style>
+#home h1{
+  padding-top: 2em;
+  line-height: 1.5em;
 }
-</script>
+</style>

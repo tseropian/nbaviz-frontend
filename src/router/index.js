@@ -15,7 +15,7 @@ export default new Router({
       component: Home
     },
     {
-      path: '/season/:year/:team?',
+      path: '/season/:year?/:team?',
       name: 'Season',
       component: Season
     },

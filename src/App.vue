@@ -37,7 +37,8 @@ export default {
   /* margin-top: 60px; */
 }
 #main {
-  background: red;
+  min-height: 800px;
+  padding: 2em 1em;
 }
 
 #header {
