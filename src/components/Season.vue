@@ -1,5 +1,7 @@
 <template>
   <div>
+      <header></header>
+
     SEASON: {{ $route.params.year }}
     <br />
     TEAMS: {{ currentTeams }}
@@ -82,7 +84,9 @@ export default {
           sizeOffset: -10
         }
       },
-
+        stroke: {
+          curve: 'smooth'
+        },
       xaxis: {
         categories: [],
 
@@ -232,6 +236,7 @@ export default {
     },
     resetTeams() {
       this.currentTeams = '';
+      this.series = [];
     }
   }
 }

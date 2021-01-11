@@ -1,32 +1,27 @@
 <template>
   <div id="app">
-    <Push>
-      <a id="home" href="#">
-        <span>Home</span>
-      </a>
-      <a id="home" href="/#/about">
-        <span>About</span>
-      </a>
-      <a id="home" href="#">
-        <span>Twitter</span>
-      </a>
-      <a id="home" href="/#/contact">
-        <span>Contact</span>
-      </a>
-    </Push>
+        <div id="header">
+
+    <Header></Header>
+    </div>
+    <div id="main">
     <router-view></router-view>
+
+
+    </div>
+    <Footer></Footer>
   </div>
 </template>
 
 <script>
-import { Push } from 'vue-burger-menu' 
-
+import Footer from './components/partials/Footer.vue'
+import Header from './components/partials/Header'
 export default {
   name: 'App',
-      components: {
-        Push // Register your component
-    }
-
+  components: {
+    Header,
+    Footer
+  }
 }
 </script>
 
@@ -39,6 +34,13 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  /* margin-top: 60px; */
+}
+#main {
+  background: red;
+}
+
+#header {
+  height: 58px;
 }
 </style>
