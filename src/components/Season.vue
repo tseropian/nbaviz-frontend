@@ -2,54 +2,69 @@
   <div>
       <header></header>
 
-    SEASON: {{ $route.params.year }}
-    <br />
-    TEAMS: {{ currentTeams }}
+      <h1>Regular Season Ranking: {{ currentSeason }}</h1>
+      <div class="flex space-x-4 mt-5">
+        <div class="flex-1 ...">
 
-    <template>
-      <div style="margin:auto 0; padding-left: 100px; height: 500px;border:1px solid red;">
-        <apexchart type="line" width="800" :options="options" :series="series"></apexchart>
+        Season: 
+        <select v-model="currentSeason" class="form-control" @change="onChangeSeason($event)">
+          <option value="" selected disabled>Choose</option>
+          <option  v-for="season in seasons" :value="season.year" :key="season.id">{{ season.year }}</option>
+        </select>
+        </div>
+        <div class="flex-1 ...">
+          <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" @click="setConference('E')" style="border:1px solid blue;">Eastern Conference</button>
+        </div>
+        <div class="flex-1 ...">
+          <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" @click="setConference('W')">Western Conference</button>
+        </div>
+
+        <div class="flex-1">
+          <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" @click="resetTeams();">
+            Reset
+          </button>
+        </div>
       </div>
-    </template>
-<button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" @click="setConference('E')" style="border:1px solid blue;">Eastern Conference</button>
-<br /><br />
-<button class="bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" @click="setConference('W')">Western Conference</button>
-<!-- {{ teams }} -->
-<br /><br />
 
-<button v-for="team in confTeams" :key="team.key" @click="onAddTeam(team.key)" class="border-solid	border-1 border-gray-900 py-2 px-4 rounded">
-  {{ team.key }}
-</button>
-<br /><br />
+      <div style="margin: 2em 0;">
+      <button v-for="team in confTeams" :key="team.key" @click="onAddTeam(team.key)" class="border-solid	border-1 border-gray-900 py-2 px-4 rounded">
+        {{ team.key }}
+      </button>
+      </div> 
+      <div style="text-align: center; margin: 2em auto; border: 1px solid #2f363d; height: 400px; border-radius: 5px;">
+        <apexchart type="line" :height='400' :options="options" :series="series"></apexchart>
+      </div>
 
-<button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" @click="resetTeams();">
-  Reset
-</button>
-
+      <div style="margin-top: 2em; text-align: center; margin:0 auto;border: 1px solid #2f363d; border-radius: 5px;">
+        Click on a team to see the rankings across the whole regular season.
+      </div>
   </div>
 
 </template>
-
+<style>
+  
+</style>
 <script>
 
 import gql from 'graphql-tag'
 import dateFormat from 'dateformat'
-import '../assets/styles/index.css';
 
 export default {
   name: 'Season',
-  created() {
-    this.buildSeason();
+  components: {
+    
+  },
+  async created() {
+    this.seasons = await this.fetchSeasons();
     this.teamRankings = [];
-
   },
   async mounted() {
-    console.log('I have been mounted')
-    this.onChangeTeam();
-
+    await this.buildSeason();
+    await this.onChangeTeam();
   },
   data: () => ({
-    currentSeason: 0,
+    seasons: [],
+    currentSeason: 2019,
     currentTeams: '',
     currentConference: 'E',
     availableTeams: [],
@@ -116,31 +131,24 @@ export default {
       }
     },        
   }),
-  apollo: {
-    seasons: {
-      query: gql`query Year($year: String!) {
-        seasons(year: $year){
-          year, startDate, endDate
-        }
-      }`,
-      variables () {
-        return {
-            year: this.$route.params.year
-        }
-      },
-    },   
-  },
+
   methods:{
     async buildSeason() {
-      console.log('PPPP', this.$route.params.team)
-      console.log('Lets go')
-      console.log('Ranking for teams: ' + this.currentTeams)
-      this.currentTeams = this.$route.params.team || 'SEA'
-      this.currentSeason = this.$route.params.year;
       this.availableTeams = await this.fetchTeams(this.currentSeason);
     },
-    async fetchTeams() {
 
+    async fetchSeasons() {
+      const { data } = await this.$apollo.query({
+        query: gql`query {
+          seasons{
+            year, startDate, endDate
+          }
+        }`
+      });
+      return data.seasons;
+    },
+
+    async fetchTeams() {
       const { data } = await this.$apollo.query({
         query: gql`
           query Team(
@@ -156,15 +164,16 @@ export default {
               conference
             }
           }`,
-      variables: {
-        year: Number(this.currentSeason)
-      }  
+        variables: {
+          year: Number(this.currentSeason)
+        }  
       })
       .catch(err => console.log(err)); 
-      console.log(data)
+
       return data.teams      
     },
     async fetchRankings(team) {
+      console.log(this.currentSeason)
       const { data } = await this.$apollo.query({
         query: gql`
           query Rankings(
@@ -184,7 +193,7 @@ export default {
           }`,
       variables: {
         teams: team,
-        year: this.currentSeason
+        year: this.currentSeason.toString()
       }  
       }); 
       return data.rankings
@@ -196,21 +205,34 @@ export default {
       let labels = [];
 
       for (let team of listTeams) {
-        const rankings = allRankings[team];        
-        const data = rankings.map((s) => {
-          const formattedDate = new Date(Number(s.date));          
-          return {
-            x: dateFormat(formattedDate, 'yyyy-mm-dd'), 
-            y: s.position
-          };
-        });
+        if (team.length > 0) {
+          const rankings = allRankings[team];        
+          const data = rankings.map((s) => {
+            const formattedDate = new Date(Number(s.date));          
+            return {
+              x: dateFormat(formattedDate, 'yyyy-mm-dd'), 
+              y: s.position
+            };
+          });
 
-        series.push({
-          name: team,
-          data
-        });
+          series.push({
+            name: team,
+            data
+          });
+        }
       }
-      return {value: series, labels};
+      return {
+        value: series, 
+        labels
+      };
+    },
+    async onChangeSeason() {
+      this.availableTeams = await this.fetchTeams(this.currentSeason);
+      this.filterTeams();
+      this.series = [];
+
+      // this.$route.params.year = this.currentSeason;
+
     },
     onAddTeam(team) {
       this.currentTeams = this.currentTeams + ',' + team;
@@ -221,9 +243,11 @@ export default {
       let allRankings = [];
       
       for (let team of listTeams) {
-        allRankings[team] = await this.fetchRankings(team);
+        console.log(team)
+        if (team.length > 0) {
+          allRankings[team] = await this.fetchRankings(team);
+        }
       }
-
       const {value} = this.buildSeries(allRankings);
       this.series = value; 
     },

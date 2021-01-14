@@ -10,8 +10,16 @@
   </div>
 </template>
 <style>
+#home {
+    text-align:center;
+
+}
 #home h1{
   padding-top: 2em;
   line-height: 1.5em;
+  border:1px solid black;
+  text-align:center;
+  
+
 }
 </style>

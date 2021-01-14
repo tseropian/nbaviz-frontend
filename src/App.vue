@@ -37,11 +37,16 @@ export default {
   /* margin-top: 60px; */
 }
 #main {
-  min-height: 800px;
+  min-height: 900px;
   padding: 2em 1em;
 }
 
 #header {
   height: 58px;
+}
+
+h1 {
+  font-size: 2.5em;
+  text-align: left;
 }
 </style>
