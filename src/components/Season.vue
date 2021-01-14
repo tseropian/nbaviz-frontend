@@ -55,6 +55,8 @@ export default {
     
   },
   async created() {
+    this.currentSeason = this.$route.params.year;
+
     this.seasons = await this.fetchSeasons();
     this.teamRankings = [];
   },
