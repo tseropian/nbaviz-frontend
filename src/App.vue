@@ -52,6 +52,6 @@ h1 {
 }
 
 p {
-  text-align: left;
+  text-align: center;
 }
 </style>

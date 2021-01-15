@@ -12,7 +12,7 @@
             </li>
             <li class="luxbar-item"><a href="/#/">Home</a></li>
             <li class="luxbar-item"><a href="/#/About">About</a></li>
-            <li class="luxbar-item"><a href="/#/Season">Rankings per seasson</a></li>
+            <li class="luxbar-item"><a href="/#/Season">Rankings per season</a></li>
             <li class="luxbar-item"><a href="/#/Contact">Contact</a></li>
         </ul>
     </div>

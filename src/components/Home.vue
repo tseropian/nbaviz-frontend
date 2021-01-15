@@ -17,7 +17,6 @@
 #home h1{
   padding-top: 2em;
   line-height: 1.5em;
-  border:1px solid black;
   text-align:center;
   
 
