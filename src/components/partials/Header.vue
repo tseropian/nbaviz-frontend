@@ -11,9 +11,9 @@
                 id="luxbar-hamburger" for="luxbar-checkbox"> <span></span> </label>
             </li>
             <li class="luxbar-item"><a href="/#/">Home</a></li>
-            <li class="luxbar-item"><a href="/#/About">About</a></li>
-            <li class="luxbar-item"><a href="/#/Season">Rankings per season</a></li>
-            <li class="luxbar-item"><a href="/#/Contact">Contact</a></li>
+            <li class="luxbar-item"><a href="/#/about">About</a></li>
+            <li class="luxbar-item"><a href="/#/season">Rankings per season</a></li>
+            <li class="luxbar-item"><a href="/#/contact">Contact</a></li>
         </ul>
     </div>
 </header>
