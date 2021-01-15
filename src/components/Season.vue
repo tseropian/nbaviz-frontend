@@ -2,7 +2,7 @@
   <div>
       <header></header>
 
-      <h1>Regular Season Ranking: {{ currentSeason }}</h1>
+      <h1>Season: {{ currentSeason }} {{ getFullTeam(currentTeams) }}</h1>
       <div class="flex space-x-4 mt-5">
         <div class="flex-1 ...">
 
@@ -55,7 +55,8 @@ export default {
     
   },
   async created() {
-    this.currentSeason = this.$route.params.year;
+    this.currentTeams = this.$route.params.team;
+    this.currentSeason = this.$route.params.year || '2019';
 
     this.seasons = await this.fetchSeasons();
     this.teamRankings = [];
@@ -175,7 +176,6 @@ export default {
       return data.teams      
     },
     async fetchRankings(team) {
-      console.log(this.currentSeason)
       const { data } = await this.$apollo.query({
         query: gql`
           query Rankings(
@@ -233,19 +233,21 @@ export default {
       this.filterTeams();
       this.series = [];
 
-      // this.$route.params.year = this.currentSeason;
+      this.$router.push({ path: `/season/${this.currentSeason}` }) 
 
     },
     onAddTeam(team) {
-      this.currentTeams = this.currentTeams + ',' + team;
+      // this.currentTeams = this.currentTeams + ',' + team;
+      this.currentTeams = team;
       this.onChangeTeam();
+      this.$router.push({ path: `/season/${this.currentSeason}/${team}` }) 
+
     },
     async onChangeTeam() {
       const listTeams = this.currentTeams.split(',');
       let allRankings = [];
       
       for (let team of listTeams) {
-        console.log(team)
         if (team.length > 0) {
           allRankings[team] = await this.fetchRankings(team);
         }
@@ -263,6 +265,13 @@ export default {
     resetTeams() {
       this.currentTeams = '';
       this.series = [];
+    },
+    getFullTeam(key) {
+      if (key) {
+        const [team] = this.availableTeams.filter(t => t.key === key);
+        return ' - Team: ' + team.city + ' ' + team.name;
+      }
+      return '';
     }
   }
 }
