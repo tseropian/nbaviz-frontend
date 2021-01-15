@@ -37,7 +37,7 @@ export default {
   /* margin-top: 60px; */
 }
 #main {
-  min-height: 880px;
+  min-height: 860px;
   padding: 2em 1em;
 }
 
