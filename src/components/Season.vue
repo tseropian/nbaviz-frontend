@@ -20,14 +20,14 @@
         </div>
 
         <div class="flex-1">
-          <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" @click="resetTeams();">
+          <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 mr-4 border border-blue-500 hover:border-transparent rounded" @click="resetTeams();">
             Reset
           </button>
         </div>
       </div>
 
       <div style="margin: 2em 0;">
-      <button v-for="team in confTeams" :key="team.key" @click="onAddTeam(team.key)" class="border-solid	border-1 border-gray-900 py-2 px-4 rounded">
+      <button v-for="team in confTeams" :key="team.key" @click="onAddTeam(team.key)" class="py-2 px-4 rounded"  :class="{highlight:team.key == currentTeams}">
         {{ team.key }}
       </button>
       </div> 
@@ -42,7 +42,9 @@
 
 </template>
 <style>
-  
+  .highlight{ 
+    border: 2px solid black;
+  }
 </style>
 <script>
 
@@ -135,7 +137,7 @@ export default {
     },        
   }),
 
-  methods:{
+  methods: {
     async buildSeason() {
       this.availableTeams = await this.fetchTeams(this.currentSeason);
     },
@@ -238,6 +240,9 @@ export default {
     },
     onAddTeam(team) {
       // this.currentTeams = this.currentTeams + ',' + team;
+
+    //  $event.target.classList.toggle('classname')
+
       this.currentTeams = team;
       this.onChangeTeam();
       this.$router.push({ path: `/season/${this.currentSeason}/${team}` }) 
