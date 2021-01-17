@@ -11,6 +11,8 @@ import './assets/styles/index.css';
 import * as Sentry from "@sentry/browser";
 import { Integrations } from "@sentry/tracing";
 
+import VueGtag from 'vue-gtag';
+
 Sentry.init({
   Vue,
   dsn: "https://180319df06ff47a99980c414f6b1cda4@o502152.ingest.sentry.io/5585809",
@@ -81,10 +83,12 @@ router.beforeEach((to, from, next) => {
   next();
 });
 
+Vue.use(VueGtag, {
+  config: { id: "UA-187494834-1" }
+}, router);
 
 new Vue({
   el: '#app',
-  // inject apolloProvider here like vue-router or vuex
   apolloProvider,
   router,
   render: h => h(App),

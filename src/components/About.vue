@@ -1,16 +1,35 @@
 <template>
 
-  <div>
-    <h1 class="text-4xl"><img alt="Vue logo" class="mx-auto w-20" src="../assets/basketball.png">Hoopcharts</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. <b>Lorem ipsum dolor sit amet, consectetur adipiscing elit</b>. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. </p>
+  <div id="about"> 
+    <img alt="Vue logo" class="mx-auto w-40" src="../assets/basketball.png">
 
-    <p>Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. <i>Lorem ipsum dolor sit amet, consectetur adipiscing elit</i>. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor. Morbi lectus risus, iaculis vel, suscipit quis, luctus non, massa. Fusce ac turpis quis ligula lacinia aliquet. Mauris ipsum. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. Quisque volutpat condimentum velit. </p>
+    <h1 class="text-4xl">About Hoopcharts</h1>
+    <p>Hoopcharts has been launched in January 2021 by a software engineer who had too much free time between two work contracts during Covid-19. I wanted to start tinkering 
+      with frontend programming, data visualisation and NBA Analytics :-)</p>
+    
+    <p>Follow our updates on social media for the upcoming features.</p>
 
-    <p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam nec ante. Sed lacinia, urna non tincidunt mattis, tortor neque adipiscing diam, a cursus ipsum ante quis turpis. Nulla facilisi. Ut fringilla. Suspendisse potenti. <b>Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh</b>. Nunc feugiat mi a tellus consequat imperdiet. Vestibulum sapien. Proin quam. Etiam ultrices. Suspendisse in justo eu magna luctus suscipit. Sed lectus. Integer euismod lacus luctus magna. Quisque cursus, metus vitae pharetra auctor, sem massa mattis sem, at interdum magna augue eget diam. </p>
-  
+    <p>Hoopcharts is run by Thomas, who grew up as a teenager in the 90s, watching NBA games on VHS. He is the New York Knicks, San Antonio Spurs and the Seattle SuperSonics.</p> 
+    
+    <h2>Updates</h2>
+    <ul>
+      <li>- 2021-01-16: Fixed a bunch of bugs</li>
+      <li>- 2021-01-06: Hoopcharts goes online with sample data from regular seasons 2018 to 2020</li>
+    </ul>
   </div>
 </template>
 
+<style>
+#about {
+  text-align: left;
+}
+
+#about p {
+  text-align: left;
+  margin: 1em 0;
+}
+
+</style>
 <script>
 
 import '../assets/styles/index.css';

@@ -51,6 +51,13 @@ h1 {
   margin-bottom: 1.5em;
 }
 
+h2 {
+  font-size: 1.8em;
+  text-align: left;
+  margin-top: 1.5em;
+}
+
+
 p {
   text-align: center;
 }
