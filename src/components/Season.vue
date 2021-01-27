@@ -35,8 +35,12 @@
         <apexchart type="line" :height='400' :options="options" :series="series"></apexchart>
       </div>
 
-      <div style="margin-top: 2em; text-align: center; margin:0 auto;border: 1px solid #2f363d; border-radius: 5px;">
+      <div style="margin-top: 2em; padding: 2em; text-align: center; margin:0 auto;border: 1px solid #2f363d; border-radius: 5px;">
         Click on a team to see the rankings across the whole regular season.
+        <p style="text-align:left;margin-top: 2em;">
+          NB: This website is still in beta mode. There may be some inaccuracies with some of the ranking (especially with tie-breakers). On top of that, my initial data set also contains some discrepancies I plan to review and update soon. 
+          <a href="/#/contact">Feel free to reach out</a> if you have any comment or if you want to receive updates on future releases.        
+      </p>
       </div>
   </div>
 

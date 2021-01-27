@@ -5,7 +5,7 @@
 
     <h1 class="text-4xl">About Hoopcharts</h1>
     <p>Hoopcharts has been launched in January 2021 by a software engineer who had too much free time between two work contracts during Covid-19. I wanted to start tinkering 
-      with frontend programming, data visualisation and NBA Analytics :-)</p>
+      with frontend programming, data visualisation and NBA analytics :-)</p>
     
     <p>Follow our updates on social media for the upcoming features.</p>
 
@@ -13,9 +13,16 @@
     
     <h2>Updates</h2>
     <ul>
+      <li>- 2021-01-27: Imported regular seasons from 2010 to 2020</li>
       <li>- 2021-01-16: Fixed a bunch of bugs</li>
       <li>- 2021-01-06: Hoopcharts goes online with sample data from regular seasons 2018 to 2020</li>
     </ul>
+    <h2>Credits</h2>
+    <ul>
+      <li>- <em>Basketball icon</em>: <a href="https://www.iconfinder.com/aomam.ss" target="_blank">AomAm</a></li>
+      <li>- <em>Hosting</em>: Vercel + Digital Ocean</li>
+    </ul>
+    
   </div>
 </template>
 
