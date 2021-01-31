@@ -27,7 +27,7 @@
       </div>
 
       <div style="margin: 2em 0;">
-      <button v-for="team in confTeams" :key="team.key" @click="onAddTeam(team.key)" class="py-2 px-4 rounded"  :class="{highlight:team.key == currentTeams}">
+      <button v-for="team in confTeams" :key="team.key" @click="onAddTeam(team.key)" class="py-2 px-4 mr-4 rounded text-white"  :class="{highlight:team.key == currentTeams}" v-bind:style="{ 'background-color': team.colour }">
         {{ team.key }}
       </button>
       </div> 
@@ -89,6 +89,7 @@ export default {
           enabled: false
         },
       },
+
       dataLabels: {
         enabled: false
       },
