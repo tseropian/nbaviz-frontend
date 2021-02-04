@@ -51,9 +51,9 @@ export const store = new Vuex.Store({
       state.currentTeams = team
     },
     storeAvailableTeams(state, teams) {
-      teams.forEach(t => {
-        console.log(t.key)
-      })
+      // teams.forEach(t => {
+      //   console.log(t.key)
+      // })
       state.availableTeams = teams;
     }
     

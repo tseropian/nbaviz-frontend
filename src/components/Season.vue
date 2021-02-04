@@ -53,7 +53,9 @@ export default {
   },
   async created() {
     this.currentTeams = this.$route.params.team;
-    this.currentSeason = this.$route.params.year || this.currentSeason;
+    const currentSeason = this.$route.params.year || this.currentSeason
+    console.log('initial season ' + currentSeason)
+    this.$store.commit('changeSeason', currentSeason)
 
     this.seasons = await this.fetchSeasons();
     this.teamRankings = [];

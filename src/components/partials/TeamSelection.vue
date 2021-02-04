@@ -42,7 +42,7 @@ export default {
   props:  ['teams', 'season'],
   data() {
     return {
-      currentConference: 'E'
+      currentConference: ''
     }
   },
   methods: {
