@@ -5,7 +5,10 @@
       <TitleSingleSeason />
       <div class="flex space-x-4 mt-5">
         <div class="flex-1 ...">
-          <SeasonSelection :seasons="seasons" />
+          <SeasonSelection 
+            :seasons="seasons" 
+            @change-season="changeSeason"
+          />
           <TeamSelection 
             :teams="$store.getters.availableTeams" 
             :season="$store.getters.currentSeason.toString()"
@@ -52,9 +55,10 @@ export default {
     TitleSingleSeason
   },
   async created() {
-    this.currentTeams = this.$route.params.team;
-    const currentSeason = this.$route.params.year || this.currentSeason
-    console.log('initial season ' + currentSeason)
+    const currentTeams = this.$route.params.team;
+    this.$store.commit('changeTeam', currentTeams)
+
+    const currentSeason = this.$route.params.year || 2019
     this.$store.commit('changeSeason', currentSeason)
 
     this.seasons = await this.fetchSeasons();
@@ -67,11 +71,7 @@ export default {
   },
   data: () => ({
     seasons: [],
-    currentSeason: 2019,
-    currentTeams: '',
-    currentConference: 'E',
     availableTeams: [],
-    confTeams: [],
     teamRankings: ['qwqwq'],
     series: [],
     options: {
@@ -137,16 +137,6 @@ export default {
   }),
 
   methods: {
-    async buildSeason() {
-      console.log('Build Season')
-      const teams = await this.fetchTeams();
-      console.log("Teams");
-      console.log(teams)
-    this.$store.commit('storeAvailableTeams',  teams)
-
-      this.availableTeams = await this.fetchTeams(this.currentSeason);
-    },
-
     async fetchSeasons() {
       const { data } = await this.$apollo.query({
         query: gql`query {
@@ -159,7 +149,6 @@ export default {
     },
 
     async fetchTeams() {
-      console.log('Fetching teams for season ' + this.$store.getters.currentSeason)
       const { data } = await this.$apollo.query({
         query: gql`
           query Team(
@@ -236,13 +225,9 @@ export default {
         labels
       };
     },
-    async onChangeSeason() {
-      // this.availableTeams = await this.fetchTeams(this.currentSeason);
-      // this.filterTeams();
-      // this.series = [];
-
-      // this.$router.push({ path: `/season/${this.currentSeason}` }) 
-
+    async changeSeason() {
+      const availableTeams = await this.fetchTeams(this.$store.getters.currentSeason);
+      this.$store.commit('storeAvailableTeams', availableTeams)
     },
     async changeTeam() {
       const listTeams = this.$store.getters.currentTeams.split(',');

@@ -54,11 +54,8 @@ export default {
     },
     addTeam(team) {
       // this.currentTeams = this.currentTeams + ',' + team;
-console.log('Add Team')
       this.$store.commit('changeTeam', team)
-      // this.currentTeams = team;
-      // this.onChangeTeam();current
-      // this.$router.push({ path: `/season/${this.season}/${team}` })     
+      this.$router.push({ path: `/season/${this.season}/${team}` })     
       this.$emit('change-team', team)
     },
   }
