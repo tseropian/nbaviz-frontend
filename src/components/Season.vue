@@ -4,20 +4,21 @@
 
       <TitleSingleSeason />
       <div class="flex space-x-4 mt-5">
-        <div class="flex-1 ...">
+        <div class="flex-auto w-1/5">
           <SeasonSelection 
             :seasons="seasons" 
             @change-season="changeSeason"
           />
+        </div>
+        
+        <div class="flex-auto w-4/5">
+
           <TeamSelection 
             :teams="$store.getters.availableTeams" 
             :season="$store.getters.currentSeason.toString()"
             @change-team="changeTeam"
           />
 
-          {{ $store.getters.currentSeason }}
-          <!-- {{ $store.getters.availableTeams }} -->
-          {{ $store.getters.currentTeams }}
         </div>
       </div>
       <div style="text-align: center; margin: 2em auto; border: 1px solid #2f363d; height: 400px; border-radius: 5px;">
@@ -62,7 +63,6 @@ export default {
     this.$store.commit('changeSeason', currentSeason)
 
     this.seasons = await this.fetchSeasons();
-    this.teamRankings = [];
   },
   async mounted() {
     console.log('Just clicking')
@@ -72,7 +72,6 @@ export default {
   data: () => ({
     seasons: [],
     availableTeams: [],
-    teamRankings: ['qwqwq'],
     series: [],
     options: {
       chart: {
@@ -172,6 +171,7 @@ export default {
 
       return data.teams      
     },
+
     async fetchRankings(team) {
       const { data } = await this.$apollo.query({
         query: gql`
@@ -197,6 +197,7 @@ export default {
       }); 
       return data.rankings
     },
+
     buildSeries(allRankings) {
 
       const listTeams = this.$store.getters.currentTeams.split(',');
@@ -241,6 +242,7 @@ export default {
       const {value} = this.buildSeries(allRankings);
       this.series = value; 
     },
+
     resetTeams() {
       this.currentTeams = '';
       this.series = [];
