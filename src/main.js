@@ -3,10 +3,12 @@ import VueRouter from 'vue-router'
 import VueApollo from 'vue-apollo'
 import ApolloClient from 'apollo-boost'
 import VueApexCharts from 'vue-apexcharts'
+import Vuex from 'vuex'
 
 import router from './router'
 import App from './App.vue'
 import './assets/styles/index.css';
+import { store } from './store/store'
 
 import * as Sentry from "@sentry/browser";
 import { Integrations } from "@sentry/tracing";
@@ -37,6 +39,7 @@ const apolloProvider = new VueApollo({
 Vue.use(VueRouter)
 Vue.use(VueApollo)
 Vue.use(VueApexCharts)
+Vue.use(Vuex);
 
 Vue.component('apexchart', VueApexCharts)
 Vue.config.productionTip = false
@@ -89,6 +92,7 @@ Vue.use(VueGtag, {
 
 new Vue({
   el: '#app',
+  store,  
   apolloProvider,
   router,
   render: h => h(App),

@@ -1,38 +1,28 @@
 <template>
   <div>
-      <header></header>
+      <header/>
 
-      <h1>Season: {{ currentSeason }} {{ getFullTeam(currentTeams) }}</h1>
+      <TitleSingleSeason />
       <div class="flex space-x-4 mt-5">
-        <div class="flex-1 ...">
+        <div class="flex-auto w-1/5">
+          <SeasonSelection 
+            :seasons="seasons" 
+            @change-season="changeSeason"
+          />
+        </div>
+        
+        <div class="flex-auto w-4/5">
 
-        Season: 
-        <select v-model="currentSeason" class="form-control" @change="onChangeSeason($event)">
-          <option value="" selected disabled>Choose</option>
-          <option  v-for="season in seasons" :value="season.year" :key="season.id">{{ season.year }}</option>
-        </select>
-        </div>
-        <div class="flex-1 ...">
-          <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" @click="setConference('E')" style="border:1px solid blue;">Eastern Conference</button>
-        </div>
-        <div class="flex-1 ...">
-          <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" @click="setConference('W')">Western Conference</button>
-        </div>
+          <TeamSelection 
+            :teams="$store.getters.availableTeams" 
+            :season="$store.getters.currentSeason.toString()"
+            @change-team="changeTeam"
+          />
 
-        <div class="flex-1">
-          <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 mr-4 border border-blue-500 hover:border-transparent rounded" @click="resetTeams();">
-            Reset
-          </button>
         </div>
       </div>
-
-      <div style="margin: 2em 0;">
-      <button v-for="team in confTeams" :key="team.key" @click="onAddTeam(team.key)" class="py-2 px-4 mr-4 rounded text-white"  :class="{highlight:team.key == currentTeams}" v-bind:style="{ 'background-color': team.colour }">
-        {{ team.key }}
-      </button>
-      </div> 
       <div style="text-align: center; margin: 2em auto; border: 1px solid #2f363d; height: 400px; border-radius: 5px;">
-        <apexchart type="line" :height='400' :options="options" :series="series"></apexchart>
+        <apexchart type="line" :height='400' :options="options" :series="series" ></apexchart>
       </div>
 
       <div style="margin-top: 2em; padding: 2em; text-align: center; margin:0 auto;border: 1px solid #2f363d; border-radius: 5px;">
@@ -51,34 +41,37 @@
   }
 </style>
 <script>
-
 import gql from 'graphql-tag'
 import dateFormat from 'dateformat'
+
+import TeamSelection from './partials/TeamSelection.vue'
+import SeasonSelection from './partials/SeasonSelection.vue'
+import TitleSingleSeason from './partials/TitleSingleSeason.vue'
 
 export default {
   name: 'Season',
   components: {
-    
+    TeamSelection,
+    SeasonSelection,  
+    TitleSingleSeason
   },
   async created() {
-    this.currentTeams = this.$route.params.team;
-    this.currentSeason = this.$route.params.year || this.currentSeason;
+    const currentTeams = this.$route.params.team;
+    this.$store.commit('changeTeam', currentTeams)
+
+    const currentSeason = this.$route.params.year || 2019
+    this.$store.commit('changeSeason', currentSeason)
 
     this.seasons = await this.fetchSeasons();
-    this.teamRankings = [];
   },
   async mounted() {
-    await this.buildSeason();
-    await this.onChangeTeam();
+    console.log('Just clicking')
+    // await this.buildSeason();
+    await this.changeSeason();
   },
   data: () => ({
     seasons: [],
-    currentSeason: 2019,
-    currentTeams: '',
-    currentConference: 'E',
     availableTeams: [],
-    confTeams: [],
-    teamRankings: ['qwqwq'],
     series: [],
     options: {
       chart: {
@@ -143,10 +136,6 @@ export default {
   }),
 
   methods: {
-    async buildSeason() {
-      this.availableTeams = await this.fetchTeams(this.currentSeason);
-    },
-
     async fetchSeasons() {
       const { data } = await this.$apollo.query({
         query: gql`query {
@@ -175,13 +164,14 @@ export default {
             }
           }`,
         variables: {
-          year: Number(this.currentSeason)
+          year: Number(this.$store.getters.currentSeason)
         }  
       })
       .catch(err => console.log(err)); 
 
       return data.teams      
     },
+
     async fetchRankings(team) {
       const { data } = await this.$apollo.query({
         query: gql`
@@ -202,14 +192,15 @@ export default {
           }`,
       variables: {
         teams: team,
-        year: this.currentSeason.toString()
+        year: this.$store.getters.currentSeason.toString()
       }  
       }); 
       return data.rankings
     },
+
     buildSeries(allRankings) {
 
-      const listTeams = this.currentTeams.split(',');
+      const listTeams = this.$store.getters.currentTeams.split(',');
       let series = [];
       let labels = [];
 
@@ -235,26 +226,12 @@ export default {
         labels
       };
     },
-    async onChangeSeason() {
-      this.availableTeams = await this.fetchTeams(this.currentSeason);
-      this.filterTeams();
-      this.series = [];
-
-      this.$router.push({ path: `/season/${this.currentSeason}` }) 
-
+    async changeSeason() {
+      const availableTeams = await this.fetchTeams(this.$store.getters.currentSeason);
+      this.$store.commit('storeAvailableTeams', availableTeams)
     },
-    onAddTeam(team) {
-      // this.currentTeams = this.currentTeams + ',' + team;
-
-    //  $event.target.classList.toggle('classname')
-
-      this.currentTeams = team;
-      this.onChangeTeam();
-      this.$router.push({ path: `/season/${this.currentSeason}/${team}` }) 
-
-    },
-    async onChangeTeam() {
-      const listTeams = this.currentTeams.split(',');
+    async changeTeam() {
+      const listTeams = this.$store.getters.currentTeams.split(',');
       let allRankings = [];
       
       for (let team of listTeams) {
@@ -265,24 +242,12 @@ export default {
       const {value} = this.buildSeries(allRankings);
       this.series = value; 
     },
-    filterTeams() {
-      this.confTeams =  this.availableTeams.filter(t => t.conference === this.currentConference);
-   },
-    setConference(conf) {
-      this.currentConference = conf;
-      this.filterTeams();
-    },
+
     resetTeams() {
       this.currentTeams = '';
       this.series = [];
     },
-    getFullTeam(key) {
-      if (key) {
-        const [team] = this.availableTeams.filter(t => t.key === key);
-        return ' - Team: ' + team.city + ' ' + team.name;
-      }
-      return '';
-    }
+
   }
 }
 </script>
