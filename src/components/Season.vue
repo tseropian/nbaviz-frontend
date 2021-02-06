@@ -52,7 +52,7 @@ export default {
   name: 'Season',
   components: {
     TeamSelection,
-    SeasonSelection,
+    SeasonSelection,  
     TitleSingleSeason
   },
   async created() {
@@ -66,8 +66,8 @@ export default {
   },
   async mounted() {
     console.log('Just clicking')
-    await this.buildSeason();
-    // await this.onChangeTeam();
+    // await this.buildSeason();
+    await this.changeSeason();
   },
   data: () => ({
     seasons: [],
