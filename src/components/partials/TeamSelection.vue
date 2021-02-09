@@ -56,11 +56,7 @@ export default {
       return this.teams.filter(t => t.conference === this.currentConference);
     },
     addTeam(team) {
-      // this.currentTeams = this.currentTeams + ',' + team;
-
       this.$store.commit('changeTeam', team)
-
-      this.$router.push({ path: `/season/${this.season}/${team}` })     
       this.$emit('change-team', team)
     },
   }

@@ -12,6 +12,7 @@
             </li>
             <li class="luxbar-item"><a href="/#/"  @click="onClick">Home</a></li>
             <li class="luxbar-item"><a href="/#/about" @click="onClick">About</a></li>
+            <li class="luxbar-item"><a href="/#/history" @click="onClick">History</a></li>
             <li class="luxbar-item"><a href="/#/season" @click="onClick">Rankings per season</a></li>
             <li class="luxbar-item"><a href="/#/contact" @click="onClick">Contact</a></li>
         </ul>

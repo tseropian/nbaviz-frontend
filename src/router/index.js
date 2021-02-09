@@ -4,6 +4,7 @@ import Season from '@/components/Season'
 import Home from '@/components/Home'
 import About from '@/components/About'
 import Contact from '@/components/Contact'
+import History from '@/components/History'
 
 Vue.use(Router)
 
@@ -33,6 +34,24 @@ export default new Router({
       component: Season,
       meta: {
         title: 'Hoopcharts.xyz - Regular Seasons Ranking per year', 
+        metaTags: [
+          {
+            name: 'description',
+            content: 'Hoopcharts.xyz - Regular Seasons Ranking per year'
+          },
+          {
+            property: 'og:description',
+            content: 'Hoopcharts.xyz - Regular Seasons Ranking per year'
+          }
+        ]
+      }
+    },
+    {
+      path: '/history/:team?',
+      name: 'Rankings History',
+      component: History,
+      meta: {
+        title: 'Hoopcharts.xyz - Rankings history per year', 
         metaTags: [
           {
             name: 'description',
