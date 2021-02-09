@@ -3,14 +3,7 @@
       <header/>
 
       <TitleSingleSeason />
-      <div class="flex space-x-4 mt-5">
-        <div class="flex-auto w-1/5">
-          <SeasonSelection 
-            :seasons="seasons" 
-            @change-season="changeSeason"
-          />
-        </div>
-        
+      <div class="flex space-x-4 mt-5">        
         <div class="flex-auto w-4/5">
 
           <TeamSelection 
@@ -45,29 +38,28 @@ import gql from 'graphql-tag'
 import dateFormat from 'dateformat'
 
 import TeamSelection from './partials/TeamSelection.vue'
-import SeasonSelection from './partials/SeasonSelection.vue'
 import TitleSingleSeason from './partials/TitleSingleSeason.vue'
 
 export default {
   name: 'Season',
   components: {
     TeamSelection,
-    SeasonSelection,  
     TitleSingleSeason
   },
   async created() {
-    const currentTeams = this.$route.params.team;
+    const currentTeams = this.$route.params.team || 'SAS';
+          const availableTeams = await this.fetchTeams('2020');
+      this.$store.commit('storeAvailableTeams', availableTeams)
     this.$store.commit('changeTeam', currentTeams)
 
-    const currentSeason = this.$route.params.year || 2019
-    this.$store.commit('changeSeason', currentSeason)
-
-    this.seasons = await this.fetchSeasons();
+    // this.seasons = await this.fetchSeasons();
   },
   async mounted() {
     console.log('Just clicking')
     // await this.buildSeason();
-    await this.changeSeason();
+       const currentTeams = this.$route.params.team || 'SAS';
+    this.$store.commit('changeTeam', currentTeams)
+    await this.changeTeam();
   },
   data: () => ({
     seasons: [],
@@ -102,9 +94,7 @@ export default {
           sizeOffset: -10
         }
       },
-        stroke: {
-          curve: 'smooth'
-        },
+
       xaxis: {
         categories: [],
 
@@ -136,16 +126,6 @@ export default {
   }),
 
   methods: {
-    async fetchSeasons() {
-      const { data } = await this.$apollo.query({
-        query: gql`query {
-          seasons{
-            year, startDate, endDate
-          }
-        }`
-      });
-      return data.seasons;
-    },
 
     async fetchTeams() {
       const { data } = await this.$apollo.query({
@@ -173,14 +153,13 @@ export default {
     },
 
     async fetchRankings(team) {
+      console.log('Fetch Rankings')
       const { data } = await this.$apollo.query({
         query: gql`
-          query Rankings(
-            $teams: String,
-            $year: String,
+          query SeasonRankings(
+            $teams: String,            
           ) {
-            rankings(
-              season: $year, 
+            seasonRankings(
               teams: $teams
             ) {
               team, 
@@ -195,7 +174,7 @@ export default {
         year: this.$store.getters.currentSeason.toString()
       }  
       }); 
-      return data.rankings
+      return data.seasonRankings
     },
 
     buildSeries(allRankings) {
@@ -230,7 +209,9 @@ export default {
       const availableTeams = await this.fetchTeams(this.$store.getters.currentSeason);
       this.$store.commit('storeAvailableTeams', availableTeams)
     },
-    async changeTeam() {
+    async changeTeam(e) {
+      console.log('Change Team');
+      console.log(e)
       const listTeams = this.$store.getters.currentTeams.split(',');
       let allRankings = [];
       
@@ -239,9 +220,10 @@ export default {
           allRankings[team] = await this.fetchRankings(team);
         }
       }
+      console.log(allRankings)
       const {value} = this.buildSeries(allRankings);
       this.series = value; 
-      this.$router.push({ path: `/season/${this.season}/${this.$store.getters.currentTeams}` })     
+      // this.$router.push({ path: `/history//${this.season}/${team}` })     
 
     },
 
