@@ -5,6 +5,7 @@ import Home from '@/components/Home'
 import About from '@/components/About'
 import Contact from '@/components/Contact'
 import History from '@/components/History'
+import HighLow from '@/components/HighLow'
 
 Vue.use(Router)
 
@@ -64,6 +65,24 @@ export default new Router({
         ]
       }
     },
+    {
+      path: '/high-low',
+      name: 'Highs and Lows per season',
+      component: HighLow,
+      meta: {
+        title: 'Hoopcharts.xyz - High and Lows per Season', 
+        metaTags: [
+          {
+            name: 'description',
+            content: 'Hoopcharts.xyz - High and Lows per Season'
+          },
+          {
+            property: 'og:description',
+            content: 'Hoopcharts.xyz - High and Lows per Season'
+          }
+        ]
+      }
+    },    
     {
       path: '/about',
       name: 'About',
