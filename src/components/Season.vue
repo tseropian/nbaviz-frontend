@@ -56,16 +56,18 @@ export default {
     TitleSingleSeason
   },
   async created() {
+    this.seasons = await this.fetchSeasons();
+
     const currentTeams = this.$route.params.team;
     this.$store.commit('changeTeam', currentTeams)
 
     const currentSeason = this.$route.params.year || 2019
+    console.log(currentSeason)
     this.$store.commit('changeSeason', currentSeason)
 
-    this.seasons = await this.fetchSeasons();
+
   },
   async mounted() {
-    console.log('Just clicking')
     // await this.buildSeason();
     await this.changeSeason();
   },
@@ -147,7 +149,7 @@ export default {
       return data.seasons;
     },
 
-    async fetchTeams() {
+    async fetchTeams(currentSeason) {
       const { data } = await this.$apollo.query({
         query: gql`
           query Team(
@@ -164,7 +166,7 @@ export default {
             }
           }`,
         variables: {
-          year: Number(this.$store.getters.currentSeason)
+          year: Number(currentSeason)
         }  
       })
       .catch(err => console.log(err)); 
@@ -227,7 +229,8 @@ export default {
       };
     },
     async changeSeason() {
-      const availableTeams = await this.fetchTeams(this.$store.getters.currentSeason);
+      const season = this.$store.getters.currentSeason;
+      const availableTeams = await this.fetchTeams(season);
       this.$store.commit('storeAvailableTeams', availableTeams)
     },
     async changeTeam() {
