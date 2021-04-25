@@ -2,7 +2,9 @@
   <div>
       <header/>
 
-      <TitleSingleSeason />
+      <div>
+        <h1>History Ranking for {{ $store.getters.currentTeams }}</h1>
+      </div>
       <div class="flex space-x-4 mt-5">        
         <div class="flex-auto w-4/5">
 
@@ -38,13 +40,12 @@ import gql from 'graphql-tag'
 import dateFormat from 'dateformat'
 
 import TeamSelection from './partials/TeamSelection.vue'
-import TitleSingleSeason from './partials/TitleSingleSeason.vue'
+// import TitleSingleSeason from './partials/TitleSingleSeason.vue'
 
 export default {
   name: 'Season',
   components: {
-    TeamSelection,
-    TitleSingleSeason
+    TeamSelection
   },
   async created() {
     const currentTeams = this.$route.params.team || 'SAS';
