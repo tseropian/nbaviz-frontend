@@ -49,16 +49,15 @@ export default {
   },
   async created() {
     const currentTeams = this.$route.params.team || 'SAS';
-          const availableTeams = await this.fetchTeams('2020');
-      this.$store.commit('storeAvailableTeams', availableTeams)
+    const availableTeams = await this.fetchTeams('2020');
+    this.$store.commit('storeAvailableTeams', availableTeams)
     this.$store.commit('changeTeam', currentTeams)
 
     // this.seasons = await this.fetchSeasons();
   },
   async mounted() {
-    console.log('Just clicking')
     // await this.buildSeason();
-       const currentTeams = this.$route.params.team || 'SAS';
+    const currentTeams = this.$route.params.team || 'SAS';
     this.$store.commit('changeTeam', currentTeams)
     await this.changeTeam();
   },
@@ -154,7 +153,6 @@ export default {
     },
 
     async fetchRankings(team) {
-      console.log('Fetch Rankings')
       const { data } = await this.$apollo.query({
         query: gql`
           query SeasonRankings(
@@ -170,10 +168,10 @@ export default {
               losses
             }
           }`,
-      variables: {
-        teams: team,
-        year: this.$store.getters.currentSeason.toString()
-      }  
+        variables: {
+          teams: team,
+          year: this.$store.getters.currentSeason.toString()
+        }  
       }); 
       return data.seasonRankings
     },
@@ -211,8 +209,6 @@ export default {
       this.$store.commit('storeAvailableTeams', availableTeams)
     },
     async changeTeam(e) {
-      console.log('Change Team');
-      console.log(e)
       const listTeams = this.$store.getters.currentTeams.split(',');
       let allRankings = [];
       
@@ -221,7 +217,7 @@ export default {
           allRankings[team] = await this.fetchRankings(team);
         }
       }
-      console.log(allRankings)
+
       const {value} = this.buildSeries(allRankings);
       this.series = value; 
       // this.$router.push({ path: `/history//${this.season}/${team}` })     
