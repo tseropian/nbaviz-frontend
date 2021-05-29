@@ -190,7 +190,7 @@ export default {
           const data = rankings.map((s) => {
             const formattedDate = new Date(Number(s.date));          
             return {
-              x: dateFormat(formattedDate, 'yyyy-mm-dd'), 
+              x: dateFormat(formattedDate, 'yyyy'), 
               y: s.position
             };
           });
