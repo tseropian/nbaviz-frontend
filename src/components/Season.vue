@@ -244,7 +244,7 @@ export default {
       }
       const {value} = this.buildSeries(allRankings);
       this.series = value; 
-      this.$router.push({ path: `/season/${this.season}/${this.$store.getters.currentTeams}` })     
+      this.$router.push({ path: `/season/${this.$store.getters.currentSeason}/${this.$store.getters.currentTeams}` })     
 
     },
 
