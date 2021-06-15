@@ -25,7 +25,6 @@ export default {
       this.$router.push({ path: `/season/${event.target.value}` }) 
       this.$store.commit('changeSeason', event.target.value)
       this.$emit('change-season', event.target.value)
-
     },
   }
 }
