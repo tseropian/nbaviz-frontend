@@ -208,7 +208,7 @@ export default {
       const availableTeams = await this.fetchTeams(this.$store.getters.currentSeason);
       this.$store.commit('storeAvailableTeams', availableTeams)
     },
-    async changeTeam(e) {
+    async changeTeam() {
       const listTeams = this.$store.getters.currentTeams.split(',');
       let allRankings = [];
       
