@@ -56,20 +56,14 @@ export default {
     TitleSingleSeason
   },
   async created() {
-    console.log('I am first')
-    
-
     const currentTeams = this.$route.params.team;
     this.$store.commit('changeTeam', currentTeams)
     this.seasons = await this.fetchSeasons(); 
-console.log(currentTeams)
     const currentSeason = this.$route.params.year || 2019
     this.$store.commit('changeSeason', currentSeason)
-
   },
   async mounted() {
     // await this.buildSeason();
-    console.log('We Moount')
     await this.changeSeason();
     await this.changeTeam();
   },

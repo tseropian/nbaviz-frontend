@@ -129,7 +129,6 @@ export default {
     },
 
     async fetchRankings() {
-      console.log('Fetch Rankings')
       const { data } = await this.$apollo.query({
         query: gql`
             query{
@@ -174,8 +173,6 @@ export default {
       this.$store.commit('storeAvailableTeams', availableTeams)
     },
     async changeTeam(e) {
-      console.log('Change Team');
-      console.log(e)
       const listTeams = this.$store.getters.currentTeams.split(',');
       let allRankings = [];
       
@@ -184,7 +181,6 @@ export default {
           allRankings[team] = await this.fetchRankings(team);
         }
       }
-      console.log(allRankings)
       const {value} = this.buildSeries(allRankings);
       this.series = value; 
       // this.$router.push({ path: `/history//${this.season}/${team}` })     
