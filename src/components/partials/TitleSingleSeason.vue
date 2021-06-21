@@ -7,9 +7,14 @@
 export default {
   methods: {
     getFullTeam(key) {
-      if (key) {
-        const [team] = this.$store.getters.availableTeams.filter(t => t.key === key);
-        return ' - Team: ' + team.city + ' ' + team.name;
+      console.log('KEY')
+      console.log(key)
+      console.log(this.$store.getters.availableTeams)
+      if (key.length > 0 && this.$store.getters.availableTeams.length > 0) {
+        const team = this.$store.getters.availableTeams.filter(t => t.key === key);
+        const currentTeam = team[0]
+        console.log(currentTeam)
+        return ' - Team: ' + currentTeam.city + ' ' + currentTeam.name;
       }
       return '';
     }
