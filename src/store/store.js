@@ -7,7 +7,7 @@ export const store = new Vuex.Store({
   state: {
     currentTeam: '',
     seasons: [],
-    currentSeason: 2019,
+    currentSeason: 2023,
     currentTeams: '',
     currentConference: 'E',
     availableTeams: [],
