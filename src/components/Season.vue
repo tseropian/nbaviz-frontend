@@ -59,7 +59,7 @@ export default {
     const currentTeams = this.$route.params.team;
     this.$store.commit('changeTeam', currentTeams)
     this.seasons = await this.fetchSeasons(); 
-    const currentSeason = this.$route.params.year || 2019
+    const currentSeason = this.$route.params.year || 2023
     this.$store.commit('changeSeason', currentSeason)
   },
   async mounted() {
