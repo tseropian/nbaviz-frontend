@@ -3,37 +3,41 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "serve": "NODE_OPTIONS=--openssl-legacy-provider vue-cli-service serve",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider vue-cli-service build",
     "lint": "vue-cli-service lint"
+  ,
+  "upgrade:vue3": "npm install vue@^3.4.0 vue-router@^4.2.5 vuex@^4.1.0 @vue/cli-service@^5.0.0 @vue/compiler-sfc@^3.4.0"
   },
   "dependencies": {
-    "@sentry/tracing": "^5.29.2",
-    "@sentry/vue": "^5.29.2",
-    "apexcharts": "^3.23.0",
-    "apollo-boost": "^0.4.9",
-    "autoprefixer": "^9.8.6",
+    "@apollo/client": "^3.7.0",
+    "@sentry/tracing": "^7.0.0",
+    "@sentry/vue": "^7.0.0",
+    "@vue/apollo-composable": "^4.2.2",
+    "@vue/apollo-option": "^4.2.2",
+    "apexcharts": "^4.0.0",
+    "autoprefixer": "^10.4.0",
     "core-js": "^3.6.5",
     "dateformat": "^4.4.1",
-    "graphql": "^15.4.0",
-    "postcss": "^7.0.35",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",
-    "vue": "^2.6.11",
-    "vue-apexcharts": "^1.6.0",
-    "vue-apollo": "^3.0.5",
-    "vue-gtag": "^1.10.0",
-    "vue-router": "^3.4.9",
-    "vuex": "^3.6.2"
+    "graphql": "^16.6.0",
+    "postcss": "^8.4.0",
+    "tailwindcss": "^3.2.0",
+    "vue": "^3.3.0",
+    "vue-gtag-next": "^1.14.0",
+    "vue-router": "^4.2.0",
+    "vue3-apexcharts": "^1.8.0",
+    "vuex": "^4.1.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.20.0",
+    "@babel/eslint-parser": "^7.20.0",
     "@types/dateformat": "^3.0.1",
-    "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-plugin-eslint": "~4.5.0",
-    "@vue/cli-service": "~4.5.0",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^6.2.2",
-    "vue-template-compiler": "^2.6.11"
+    "@vue/cli-plugin-babel": "~5.0.0",
+    "@vue/cli-plugin-eslint": "~5.0.0",
+    "@vue/cli-service": "~5.0.0",
+    "@vue/compiler-sfc": "^3.3.0",
+    "eslint": "^8.20.0",
+    "eslint-plugin-vue": "^9.0.0"
   },
   "eslintConfig": {
     "root": true,
@@ -41,13 +45,17 @@
       "node": true
     },
     "extends": [
-      "plugin:vue/essential",
+      "plugin:vue/vue3-essential",
       "eslint:recommended"
     ],
     "parserOptions": {
-      "parser": "babel-eslint"
+      "parser": "@babel/eslint-parser",
+      "requireConfigFile": false
     },
-    "rules": {}
+    "rules": {
+      "vue/multi-word-component-names": "off",
+      "vue/no-reserved-component-names": "off"
+    }
   },
   "browserslist": [
     "> 1%",

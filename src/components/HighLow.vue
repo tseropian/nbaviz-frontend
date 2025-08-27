@@ -14,23 +14,26 @@
 
         <ul id="example-1">
           <table>
+          <thead>
           <tr>
-            <td>
+            <th>
               Season
-            </td>
-            <td>
+            </th>
+            <th>
               Highest progression
-            </td>
-            <td>
+            </th>
+            <th>
               Teams
-            </td>
-            <td>
+            </th>
+            <th>
               Biggest drop
-            </td>
-            <td>
+            </th>
+            <th>
               Teams
-            </td>
+            </th>
           </tr>
+          </thead>
+          <tbody>
           <tr v-for="hl in highLows" :key="hl.year">
             <td>
               {{ hl.year  }}
@@ -48,6 +51,7 @@
               {{ hl.lowTeams.join(', ') }}
             </td>
           </tr>
+          </tbody>
           </table>
         </ul>      
       </div>
@@ -88,7 +92,6 @@ export default {
     // this.seasons = await this.fetchSeasons();
   },
   async mounted() {
-    console.log('Just clicking')
     // await this.buildSeason();
        const currentTeams = this.$route.params.team || 'SAS';
     this.$store.commit('changeTeam', currentTeams)

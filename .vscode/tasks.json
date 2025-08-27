@@ -1,0 +1,13 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Upgrade frontend to Vue 3",
+			"type": "shell",
+			"command": "npm install vue@^3.4.0 vue-router@^4.2.5 vuex@^4.1.0 @vue/cli-service@^5.0.0 @vue/compiler-sfc@^3.4.0 && npm uninstall vue-router@3 vuex@3",
+			"args": [],
+			"problemMatcher": [],
+			"group": "build"
+		}
+	]
+}

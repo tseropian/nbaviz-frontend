@@ -17,7 +17,7 @@
         </div>
       </div>
       <div style="text-align: center; margin: 2em auto; border: 1px solid #2f363d; height: 400px; border-radius: 5px;">
-        <apexchart type="line" :height='400' :options="options" :series="series" ></apexchart>
+        <ApexChart type="line" :height='400' :options="options" :series="series" ></ApexChart>
       </div>
 
       <div style="margin-top: 2em; padding: 2em; text-align: center; margin:0 auto;border: 1px solid #2f363d; border-radius: 5px;">
@@ -91,7 +91,7 @@ export default {
       markers: {
         size: 0,
         hover: {
-          sizeOffset: -10
+          sizeOffset: 6
         }
       },
 

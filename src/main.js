@@ -1,48 +1,49 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import VueApollo from 'vue-apollo'
-import ApolloClient from 'apollo-boost'
-import VueApexCharts from 'vue-apexcharts'
-import Vuex from 'vuex'
+import { createApp } from 'vue'
+import { ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client/core'
+import { DefaultApolloClient } from '@vue/apollo-composable'
+import { createApolloProvider } from '@vue/apollo-option'
+import VueApexCharts from 'vue3-apexcharts'
 
 import router from './router'
 import App from './App.vue'
 import './assets/styles/index.css';
 import { store } from './store/store'
 
-import * as Sentry from "@sentry/browser";
-import { Integrations } from "@sentry/tracing";
+import * as Sentry from "@sentry/vue";
+import { BrowserTracing } from "@sentry/tracing";
 
-import VueGtag from 'vue-gtag';
+import VueGtag from 'vue-gtag-next';
 
-Sentry.init({
-  Vue,
-  dsn: "https://180319df06ff47a99980c414f6b1cda4@o502152.ingest.sentry.io/5585809",
-  autoSessionTracking: true,
-  integrations: [
-    new Integrations.BrowserTracing(),
-  ],
-
-  // We recommend adjusting this value in production, or using tracesSampler
-  // for finer control
-  tracesSampleRate: 1.0,
-});
+const httpLink = createHttpLink({
+  uri: process.env.VUE_APP_GRAPHQL_HOST,
+})
 
 const apolloClient = new ApolloClient({
-  // You should use an absolute URL here
-  uri: process.env.VUE_APP_GRAPHQL_HOST
+  link: httpLink,
+  cache: new InMemoryCache(),
 })
-const apolloProvider = new VueApollo({
+
+const apolloProvider = createApolloProvider({
   defaultClient: apolloClient,
 })
 
-Vue.use(VueRouter)
-Vue.use(VueApollo)
-Vue.use(VueApexCharts)
-Vue.use(Vuex);
+const app = createApp(App)
 
-Vue.component('apexchart', VueApexCharts)
-Vue.config.productionTip = false
+Sentry.init({
+  app,
+  dsn: "https://180319df06ff47a99980c414f6b1cda4@o502152.ingest.sentry.io/5585809",
+  integrations: [
+    new BrowserTracing(),
+  ],
+  tracesSampleRate: 1.0,
+});
+
+app.provide(DefaultApolloClient, apolloClient)
+app.use(apolloProvider)
+app.use(store)
+app.use(router)
+app.use(VueApexCharts)
+app.component('ApexChart', VueApexCharts)
 
 // Link: https://www.digitalocean.com/community/tutorials/vuejs-vue-router-modify-head
 // This callback runs before every route change, including on page load.
@@ -86,15 +87,9 @@ router.beforeEach((to, from, next) => {
   next();
 });
 
-Vue.use(VueGtag, {
+app.use(VueGtag, {
   config: { id: "UA-187494834-1" }
 }, router);
 
-new Vue({
-  el: '#app',
-  store,  
-  apolloProvider,
-  router,
-  render: h => h(App),
-})
+app.mount('#app')
 

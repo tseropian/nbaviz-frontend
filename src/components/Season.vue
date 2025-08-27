@@ -22,7 +22,13 @@
         </div>
       </div>
       <div style="text-align: center; margin: 2em auto; border: 1px solid #2f363d; height: 400px; border-radius: 5px;">
-        <apexchart type="line" :height='400' :options="options" :series="series" ></apexchart>
+        <div v-if="loading" style="display: flex; align-items: center; justify-content: center; height: 100%;">
+          Loading chart...
+        </div>
+        <ApexChart v-else-if="series.length > 0" :key="chartKey" type="line" :height='400' :options="options" :series="series" ></ApexChart>
+        <div v-else style="display: flex; align-items: center; justify-content: center; height: 100%;">
+          No data available
+        </div>
       </div>
 
       <div style="margin-top: 2em; padding: 2em; text-align: center; margin:0 auto;border: 1px solid #2f363d; border-radius: 5px;">
@@ -71,6 +77,8 @@ export default {
     seasons: [],
     availableTeams: [],
     series: [],
+    loading: true,
+    chartKey: 0,
     options: {
       chart: {
         id: 'vuechart-example',
@@ -97,7 +105,7 @@ export default {
       markers: {
         size: 0,
         hover: {
-          sizeOffset: -10
+          sizeOffset: 6
         }
       },
         stroke: {
@@ -200,15 +208,17 @@ export default {
 
       const listTeams = this.$store.getters.currentTeams.split(',');
       let series = [];
-      let labels = [];
+      let categories = new Set();
 
       for (let team of listTeams) {
         if (team.length > 0) {
           const rankings = allRankings[team];        
           const data = rankings.map((s) => {
-            const formattedDate = new Date(Number(s.date));          
+            const formattedDate = new Date(Number(s.date));
+            const dateStr = dateFormat(formattedDate, 'yyyy-mm-dd');
+            categories.add(dateStr);
             return {
-              x: dateFormat(formattedDate, 'yyyy-mm-dd'), 
+              x: dateStr, 
               y: s.position
             };
           });
@@ -219,17 +229,22 @@ export default {
           });
         }
       }
+      
+      const sortedCategories = Array.from(categories).sort();
+      
       return {
         value: series, 
-        labels
+        categories: sortedCategories
       };
     },
     async changeSeason() {
+      this.loading = true;
       const season = this.$store.getters.currentSeason;
       const availableTeams = await this.fetchTeams(season);
       this.$store.commit('storeAvailableTeams', availableTeams)
     },
     async changeTeam() {
+      this.loading = true;
       const listTeams = this.$store.getters.currentTeams.split(',');
       let allRankings = [];
       
@@ -238,8 +253,23 @@ export default {
           allRankings[team] = await this.fetchRankings(team);
         }
       }
-      const {value} = this.buildSeries(allRankings);
-      this.series = value; 
+      const {value, categories} = this.buildSeries(allRankings);
+  
+      // Force reactivity by using Vue.set or creating new objects
+      this.series = [...value];
+      this.options = {
+        ...this.options,
+        xaxis: {
+          ...this.options.xaxis,
+          categories: categories,
+          type: 'datetime'
+        }
+      };
+      
+
+      // Force chart re-render
+      this.chartKey += 1;
+      this.loading = false;
       this.$router.push({ path: `/season/${this.$store.getters.currentSeason}/${this.$store.getters.currentTeams}` })     
 
     },

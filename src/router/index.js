@@ -1,5 +1,4 @@
-import Vue from 'vue'
-import Router from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import Season from '@/components/Season'
 import Home from '@/components/Home'
 import About from '@/components/About'
@@ -7,9 +6,8 @@ import Contact from '@/components/Contact'
 import History from '@/components/History'
 import HighLow from '@/components/HighLow'
 
-Vue.use(Router)
-
-export default new Router({
+export default createRouter({
+  history: createWebHashHistory(),
   routes: [
     {
       path: '/',
