@@ -1,4 +1,10 @@
-# nbavizz-frontend
+# Hoopcharts - frontend
+
+## Dependencies
+- GraphQL (appolo client)
+- Vue 3
+- Apexcharts
+- Hosting on vercel
 
 ## Project setup
 ```
