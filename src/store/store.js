@@ -10,6 +10,8 @@ export const store = createStore({
     availableTeams: [],
     confTeams: [],
     teamRankings: ['qwqwq'],
+    rosterTenureData: null,
+    rosterTenureSeason: null,
   },
   mutations: {
     changeSeason(state, season) {
@@ -19,13 +21,20 @@ export const store = createStore({
       state.currentTeams = team
     },
     storeAvailableTeams(state, teams) {
-      state.availableTeams = teams;
-    }
-    
+      state.availableTeams = teams
+    },
+    setRosterTenureData(state, payload) {
+      state.rosterTenureData = payload
+    },
+    setRosterTenureSeason(state, year) {
+      state.rosterTenureSeason = year
+    },
   },
   getters: {
-    currentSeason: state => state.currentSeason,
-    availableTeams: state => state.availableTeams,
-    currentTeams: state => state.currentTeams,
-  }
+    currentSeason: (state) => state.currentSeason,
+    availableTeams: (state) => state.availableTeams,
+    currentTeams: (state) => state.currentTeams,
+    rosterTenureData: (state) => state.rosterTenureData,
+    rosterTenureSeason: (state) => state.rosterTenureSeason,
+  },
 })

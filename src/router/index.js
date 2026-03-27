@@ -5,6 +5,8 @@ import About from '@/components/About'
 import Contact from '@/components/Contact'
 import History from '@/components/History'
 import HighLow from '@/components/HighLow'
+import RosterTenure from '@/components/RosterTenure'
+import RosterTenureTeam from '@/components/RosterTenureTeam'
 
 export default createRouter({
   history: createWebHashHistory(),
@@ -62,6 +64,42 @@ export default createRouter({
           }
         ]
       }
+    },
+    {
+      path: '/roster-tenure/:year/team/:teamKey',
+      name: 'RosterTenureTeam',
+      component: RosterTenureTeam,
+      meta: {
+        title: 'Hoopcharts.xyz - Roster by join season',
+        metaTags: [
+          {
+            name: 'description',
+            content: 'Browse an NBA team roster and when each player joined the franchise.',
+          },
+          {
+            property: 'og:description',
+            content: 'Browse an NBA team roster and when each player joined the franchise.',
+          },
+        ],
+      },
+    },
+    {
+      path: '/roster-tenure/:year?',
+      name: 'RosterTenure',
+      component: RosterTenure,
+      meta: {
+        title: 'Hoopcharts.xyz - When players joined their teams',
+        metaTags: [
+          {
+            name: 'description',
+            content: 'Interactive matrix of when current roster players joined each NBA team.',
+          },
+          {
+            property: 'og:description',
+            content: 'Interactive matrix of when current roster players joined each NBA team.',
+          },
+        ],
+      },
     },
     {
       path: '/high-low',

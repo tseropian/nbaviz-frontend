@@ -1,0 +1,83 @@
+{
+  "seasons": [
+    "2009",
+    "2010",
+    "2011",
+    "2012",
+    "2013",
+    "2014",
+    "2015",
+    "2016",
+    "2017",
+    "2018",
+    "2019",
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+    "2024",
+    "2025",
+    "2026"
+  ],
+  "data": {
+    "2025": {
+      "teams": [
+        {
+          "key": "GSW",
+          "name": "Golden State Warriors",
+          "color": "#1d428a",
+          "conference": "W",
+          "joinMap": {
+            "2009": {
+              "count": 1,
+              "players": [{ "name": "Stephen Curry", "pos": "PG" }]
+            },
+            "2012": {
+              "count": 1,
+              "players": [{ "name": "Draymond Green", "pos": "PF" }]
+            },
+            "2019": {
+              "count": 1,
+              "players": [{ "name": "Andrew Wiggins", "pos": "SF" }]
+            }
+          },
+          "roster": [
+            { "name": "Stephen Curry", "pos": "PG", "joinSeason": 2009 },
+            { "name": "Draymond Green", "pos": "PF", "joinSeason": 2012 },
+            { "name": "Andrew Wiggins", "pos": "SF", "joinSeason": 2019 }
+          ],
+          "totalPlayers": 3,
+          "earliestJoin": 2009
+        },
+        {
+          "key": "MIL",
+          "name": "Milwaukee Bucks",
+          "color": "#00471b",
+          "conference": "E",
+          "joinMap": {
+            "2013": {
+              "count": 1,
+              "players": [{ "name": "Giannis Antetokounmpo", "pos": "PF" }]
+            },
+            "2018": {
+              "count": 2,
+              "players": [
+                { "name": "Brook Lopez", "pos": "C" },
+                { "name": "Pat Connaughton", "pos": "SG" }
+              ]
+            }
+          },
+          "roster": [
+            { "name": "Giannis Antetokounmpo", "pos": "PF", "joinSeason": 2013 },
+            { "name": "Brook Lopez", "pos": "C", "joinSeason": 2018 },
+            { "name": "Pat Connaughton", "pos": "SG", "joinSeason": 2018 }
+          ],
+          "totalPlayers": 3,
+          "earliestJoin": 2013
+        }
+      ]
+    }
+  },
+  "generatedAt": "2026-03-16T00:00:00.000Z",
+  "_comment": "Placeholder data for local dev. Run nbaviz-parser: npm run roster:scrape && npm run roster:process to replace with scraped data."
+}
