@@ -1,0 +1,147 @@
+{
+  "season": 1949,
+  "scrapedAt": "2026-06-12T20:20:25.068Z",
+  "source": "landofbasketball",
+  "conferences": {
+    "E": [],
+    "W": []
+  },
+  "divisions": {
+    "Western": [
+      {
+        "rank": 1,
+        "team": "Rochester Royals",
+        "teamSlug": "royals",
+        "teamKey": null,
+        "wins": 45,
+        "losses": 15,
+        "winPct": 0.75,
+        "gb": 0,
+        "status": "p"
+      },
+      {
+        "rank": 2,
+        "team": "Minneapolis Lakers",
+        "teamSlug": "lakers",
+        "teamKey": null,
+        "wins": 44,
+        "losses": 16,
+        "winPct": 0.733,
+        "gb": 1,
+        "status": "p"
+      },
+      {
+        "rank": 3,
+        "team": "Chicago Stags",
+        "teamSlug": "stags",
+        "teamKey": null,
+        "wins": 38,
+        "losses": 22,
+        "winPct": 0.633,
+        "gb": 7,
+        "status": "p"
+      },
+      {
+        "rank": 4,
+        "team": "St. Louis Bombers",
+        "teamSlug": "bombers",
+        "teamKey": null,
+        "wins": 29,
+        "losses": 31,
+        "winPct": 0.483,
+        "gb": 16,
+        "status": "p"
+      },
+      {
+        "rank": 5,
+        "team": "Fort Wayne Pistons",
+        "teamSlug": "pistons",
+        "teamKey": null,
+        "wins": 22,
+        "losses": 38,
+        "winPct": 0.367,
+        "gb": 23,
+        "status": ""
+      },
+      {
+        "rank": 6,
+        "team": "Indianapolis Jets",
+        "teamSlug": "jets",
+        "teamKey": null,
+        "wins": 18,
+        "losses": 42,
+        "winPct": 0.3,
+        "gb": 27,
+        "status": ""
+      }
+    ],
+    "Eastern": [
+      {
+        "rank": 1,
+        "team": "Washington Capitols",
+        "teamSlug": "capitols",
+        "teamKey": null,
+        "wins": 38,
+        "losses": 22,
+        "winPct": 0.633,
+        "gb": 0,
+        "status": "p"
+      },
+      {
+        "rank": 2,
+        "team": "New York Knicks",
+        "teamSlug": "knicks",
+        "teamKey": "NYK",
+        "wins": 32,
+        "losses": 28,
+        "winPct": 0.533,
+        "gb": 6,
+        "status": "p"
+      },
+      {
+        "rank": 3,
+        "team": "Baltimore Bullets (1st)",
+        "teamSlug": "bullets1",
+        "teamKey": null,
+        "wins": 29,
+        "losses": 31,
+        "winPct": 0.483,
+        "gb": 9,
+        "status": "p"
+      },
+      {
+        "rank": 4,
+        "team": "Philadelphia Warriors",
+        "teamSlug": "warriors",
+        "teamKey": null,
+        "wins": 28,
+        "losses": 32,
+        "winPct": 0.467,
+        "gb": 10,
+        "status": "p"
+      },
+      {
+        "rank": 5,
+        "team": "Boston Celtics",
+        "teamSlug": "celtics",
+        "teamKey": "BOS",
+        "wins": 25,
+        "losses": 35,
+        "winPct": 0.417,
+        "gb": 13,
+        "status": ""
+      },
+      {
+        "rank": 6,
+        "team": "Providence Steamrollers",
+        "teamSlug": "steam_rollers",
+        "teamKey": null,
+        "wins": 12,
+        "losses": 48,
+        "winPct": 0.2,
+        "gb": 26,
+        "status": ""
+      }
+    ]
+  }
+}

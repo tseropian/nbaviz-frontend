@@ -5,6 +5,7 @@ import About from '@/components/About'
 import Contact from '@/components/Contact'
 import History from '@/components/History'
 import HighLow from '@/components/HighLow'
+import WinsHeatmap from '@/components/WinsHeatmap'
 
 export default createRouter({
   history: createWebHashHistory(),
@@ -81,6 +82,24 @@ export default createRouter({
         ]
       }
     },    
+    {
+      path: '/wins-heatmap/:year?',
+      name: 'Wins Heatmap',
+      component: WinsHeatmap,
+      meta: {
+        title: 'Hoopcharts.xyz - Wins Heatmap',
+        metaTags: [
+          {
+            name: 'description',
+            content: 'Hoopcharts.xyz - See where every team stands on a 0 to 82 wins scale'
+          },
+          {
+            property: 'og:description',
+            content: 'Hoopcharts.xyz - See where every team stands on a 0 to 82 wins scale'
+          }
+        ]
+      }
+    },
     {
       path: '/about',
       name: 'About',

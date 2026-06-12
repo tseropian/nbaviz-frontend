@@ -1,0 +1,103 @@
+{
+  "season": 1959,
+  "scrapedAt": "2026-06-12T20:21:54.563Z",
+  "source": "landofbasketball",
+  "conferences": {
+    "E": [],
+    "W": []
+  },
+  "divisions": {
+    "Western": [
+      {
+        "rank": 1,
+        "team": "St. Louis Hawks",
+        "teamSlug": "hawks",
+        "teamKey": null,
+        "wins": 49,
+        "losses": 23,
+        "winPct": 0.681,
+        "gb": 0,
+        "status": "p"
+      },
+      {
+        "rank": 2,
+        "team": "Minneapolis Lakers",
+        "teamSlug": "lakers",
+        "teamKey": null,
+        "wins": 33,
+        "losses": 39,
+        "winPct": 0.458,
+        "gb": 16,
+        "status": "p"
+      },
+      {
+        "rank": 3,
+        "team": "Detroit Pistons",
+        "teamSlug": "pistons",
+        "teamKey": "DET",
+        "wins": 28,
+        "losses": 44,
+        "winPct": 0.389,
+        "gb": 21,
+        "status": "p"
+      },
+      {
+        "rank": 4,
+        "team": "Cincinnati Royals",
+        "teamSlug": "royals",
+        "teamKey": null,
+        "wins": 19,
+        "losses": 53,
+        "winPct": 0.264,
+        "gb": 30,
+        "status": ""
+      }
+    ],
+    "Eastern": [
+      {
+        "rank": 1,
+        "team": "Boston Celtics",
+        "teamSlug": "celtics",
+        "teamKey": "BOS",
+        "wins": 52,
+        "losses": 20,
+        "winPct": 0.722,
+        "gb": 0,
+        "status": "p"
+      },
+      {
+        "rank": 2,
+        "team": "New York Knicks",
+        "teamSlug": "knicks",
+        "teamKey": "NYK",
+        "wins": 40,
+        "losses": 32,
+        "winPct": 0.556,
+        "gb": 12,
+        "status": "p"
+      },
+      {
+        "rank": 3,
+        "team": "Syracuse Nationals",
+        "teamSlug": "nationals",
+        "teamKey": null,
+        "wins": 35,
+        "losses": 37,
+        "winPct": 0.486,
+        "gb": 17,
+        "status": "p"
+      },
+      {
+        "rank": 4,
+        "team": "Philadelphia Warriors",
+        "teamSlug": "warriors",
+        "teamKey": null,
+        "wins": 32,
+        "losses": 40,
+        "winPct": 0.444,
+        "gb": 20,
+        "status": ""
+      }
+    ]
+  }
+}

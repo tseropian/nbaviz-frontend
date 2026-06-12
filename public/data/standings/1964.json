@@ -1,0 +1,114 @@
+{
+  "season": 1964,
+  "scrapedAt": "2026-06-12T20:16:08.037Z",
+  "source": "landofbasketball",
+  "conferences": {
+    "E": [],
+    "W": []
+  },
+  "divisions": {
+    "Western": [
+      {
+        "rank": 1,
+        "team": "San Francisco Warriors",
+        "teamSlug": "warriors",
+        "teamKey": null,
+        "wins": 48,
+        "losses": 32,
+        "winPct": 0.6,
+        "gb": 0,
+        "status": "p"
+      },
+      {
+        "rank": 2,
+        "team": "St. Louis Hawks",
+        "teamSlug": "hawks",
+        "teamKey": null,
+        "wins": 46,
+        "losses": 34,
+        "winPct": 0.575,
+        "gb": 2,
+        "status": "p"
+      },
+      {
+        "rank": 3,
+        "team": "Los Angeles Lakers",
+        "teamSlug": "lakers",
+        "teamKey": "LAL",
+        "wins": 42,
+        "losses": 38,
+        "winPct": 0.525,
+        "gb": 6,
+        "status": "p"
+      },
+      {
+        "rank": 4,
+        "team": "Baltimore Bullets",
+        "teamSlug": "bullets",
+        "teamKey": null,
+        "wins": 31,
+        "losses": 49,
+        "winPct": 0.388,
+        "gb": 17,
+        "status": ""
+      },
+      {
+        "rank": 5,
+        "team": "Detroit Pistons",
+        "teamSlug": "pistons",
+        "teamKey": "DET",
+        "wins": 23,
+        "losses": 57,
+        "winPct": 0.288,
+        "gb": 25,
+        "status": ""
+      }
+    ],
+    "Eastern": [
+      {
+        "rank": 1,
+        "team": "Boston Celtics",
+        "teamSlug": "celtics",
+        "teamKey": "BOS",
+        "wins": 59,
+        "losses": 21,
+        "winPct": 0.738,
+        "gb": 0,
+        "status": "p"
+      },
+      {
+        "rank": 2,
+        "team": "Cincinnati Royals",
+        "teamSlug": "royals",
+        "teamKey": null,
+        "wins": 55,
+        "losses": 25,
+        "winPct": 0.688,
+        "gb": 4,
+        "status": "p"
+      },
+      {
+        "rank": 3,
+        "team": "Philadelphia 76ers",
+        "teamSlug": "76ers",
+        "teamKey": "PHI",
+        "wins": 34,
+        "losses": 46,
+        "winPct": 0.425,
+        "gb": 25,
+        "status": "p"
+      },
+      {
+        "rank": 4,
+        "team": "New York Knicks",
+        "teamSlug": "knicks",
+        "teamKey": "NYK",
+        "wins": 22,
+        "losses": 58,
+        "winPct": 0.275,
+        "gb": 37,
+        "status": ""
+      }
+    ]
+  }
+}

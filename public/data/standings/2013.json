@@ -1,0 +1,685 @@
+{
+  "season": 2013,
+  "scrapedAt": "2026-06-12T19:26:41.366Z",
+  "source": "landofbasketball",
+  "conferences": {
+    "E": [
+      {
+        "rank": 1,
+        "team": "Miami Heat",
+        "teamSlug": "heat",
+        "teamKey": "MIA",
+        "wins": 66,
+        "losses": 16,
+        "winPct": 0.805,
+        "gb": 0,
+        "status": "p"
+      },
+      {
+        "rank": 2,
+        "team": "New York Knicks",
+        "teamSlug": "knicks",
+        "teamKey": "NYK",
+        "wins": 54,
+        "losses": 28,
+        "winPct": 0.659,
+        "gb": 12,
+        "status": "p"
+      },
+      {
+        "rank": 3,
+        "team": "Indiana Pacers",
+        "teamSlug": "pacers",
+        "teamKey": "IND",
+        "wins": 49,
+        "losses": 32,
+        "winPct": 0.605,
+        "gb": 16.5,
+        "status": "p"
+      },
+      {
+        "rank": 4,
+        "team": "Brooklyn Nets",
+        "teamSlug": "nets",
+        "teamKey": "BKN",
+        "wins": 49,
+        "losses": 33,
+        "winPct": 0.598,
+        "gb": 17,
+        "status": "p"
+      },
+      {
+        "rank": 5,
+        "team": "Chicago Bulls",
+        "teamSlug": "bulls",
+        "teamKey": "CHI",
+        "wins": 45,
+        "losses": 37,
+        "winPct": 0.549,
+        "gb": 21,
+        "status": "p"
+      },
+      {
+        "rank": 6,
+        "team": "Atlanta Hawks",
+        "teamSlug": "hawks",
+        "teamKey": "ATL",
+        "wins": 44,
+        "losses": 38,
+        "winPct": 0.537,
+        "gb": 22,
+        "status": "p"
+      },
+      {
+        "rank": 7,
+        "team": "Boston Celtics",
+        "teamSlug": "celtics",
+        "teamKey": "BOS",
+        "wins": 41,
+        "losses": 40,
+        "winPct": 0.506,
+        "gb": 24.5,
+        "status": "p"
+      },
+      {
+        "rank": 8,
+        "team": "Milwaukee Bucks",
+        "teamSlug": "bucks",
+        "teamKey": "MIL",
+        "wins": 38,
+        "losses": 44,
+        "winPct": 0.463,
+        "gb": 28,
+        "status": "p"
+      },
+      {
+        "rank": 9,
+        "team": "Philadelphia 76ers",
+        "teamSlug": "76ers",
+        "teamKey": "PHI",
+        "wins": 34,
+        "losses": 48,
+        "winPct": 0.415,
+        "gb": 32,
+        "status": ""
+      },
+      {
+        "rank": 10,
+        "team": "Toronto Raptors",
+        "teamSlug": "raptors",
+        "teamKey": "TOR",
+        "wins": 34,
+        "losses": 48,
+        "winPct": 0.415,
+        "gb": 32,
+        "status": ""
+      },
+      {
+        "rank": 11,
+        "team": "Detroit Pistons",
+        "teamSlug": "pistons",
+        "teamKey": "DET",
+        "wins": 29,
+        "losses": 53,
+        "winPct": 0.354,
+        "gb": 37,
+        "status": ""
+      },
+      {
+        "rank": 12,
+        "team": "Washington Wizards",
+        "teamSlug": "wizards",
+        "teamKey": "WAS",
+        "wins": 29,
+        "losses": 53,
+        "winPct": 0.354,
+        "gb": 37,
+        "status": ""
+      },
+      {
+        "rank": 13,
+        "team": "Cleveland Cavaliers",
+        "teamSlug": "cavaliers",
+        "teamKey": "CLE",
+        "wins": 24,
+        "losses": 58,
+        "winPct": 0.293,
+        "gb": 42,
+        "status": ""
+      },
+      {
+        "rank": 14,
+        "team": "Charlotte Bobcats",
+        "teamSlug": "bobcats",
+        "teamKey": null,
+        "wins": 21,
+        "losses": 61,
+        "winPct": 0.256,
+        "gb": 45,
+        "status": ""
+      },
+      {
+        "rank": 15,
+        "team": "Orlando Magic",
+        "teamSlug": "magic",
+        "teamKey": "ORL",
+        "wins": 20,
+        "losses": 62,
+        "winPct": 0.244,
+        "gb": 46,
+        "status": ""
+      }
+    ],
+    "W": [
+      {
+        "rank": 1,
+        "team": "Oklahoma City Thunder",
+        "teamSlug": "thunder",
+        "teamKey": "OKC",
+        "wins": 60,
+        "losses": 22,
+        "winPct": 0.732,
+        "gb": 0,
+        "status": "p"
+      },
+      {
+        "rank": 2,
+        "team": "San Antonio Spurs",
+        "teamSlug": "spurs",
+        "teamKey": "SAS",
+        "wins": 58,
+        "losses": 24,
+        "winPct": 0.707,
+        "gb": 2,
+        "status": "p"
+      },
+      {
+        "rank": 3,
+        "team": "Denver Nuggets",
+        "teamSlug": "nuggets",
+        "teamKey": "DEN",
+        "wins": 57,
+        "losses": 25,
+        "winPct": 0.695,
+        "gb": 3,
+        "status": "p"
+      },
+      {
+        "rank": 4,
+        "team": "Los Angeles Clippers",
+        "teamSlug": "clippers",
+        "teamKey": "LAC",
+        "wins": 56,
+        "losses": 26,
+        "winPct": 0.683,
+        "gb": 4,
+        "status": "p"
+      },
+      {
+        "rank": 5,
+        "team": "Memphis Grizzlies",
+        "teamSlug": "grizzlies",
+        "teamKey": "MEM",
+        "wins": 56,
+        "losses": 26,
+        "winPct": 0.683,
+        "gb": 4,
+        "status": "p"
+      },
+      {
+        "rank": 6,
+        "team": "Golden State Warriors",
+        "teamSlug": "warriors",
+        "teamKey": "GSW",
+        "wins": 47,
+        "losses": 35,
+        "winPct": 0.573,
+        "gb": 13,
+        "status": "p"
+      },
+      {
+        "rank": 7,
+        "team": "Los Angeles Lakers",
+        "teamSlug": "lakers",
+        "teamKey": "LAL",
+        "wins": 45,
+        "losses": 37,
+        "winPct": 0.549,
+        "gb": 15,
+        "status": "p"
+      },
+      {
+        "rank": 8,
+        "team": "Houston Rockets",
+        "teamSlug": "rockets",
+        "teamKey": "HOU",
+        "wins": 45,
+        "losses": 37,
+        "winPct": 0.549,
+        "gb": 15,
+        "status": "p"
+      },
+      {
+        "rank": 9,
+        "team": "Utah Jazz",
+        "teamSlug": "jazz",
+        "teamKey": "UTA",
+        "wins": 43,
+        "losses": 39,
+        "winPct": 0.524,
+        "gb": 17,
+        "status": ""
+      },
+      {
+        "rank": 10,
+        "team": "Dallas Mavericks",
+        "teamSlug": "mavericks",
+        "teamKey": "DAL",
+        "wins": 41,
+        "losses": 41,
+        "winPct": 0.5,
+        "gb": 19,
+        "status": ""
+      },
+      {
+        "rank": 11,
+        "team": "Portland Trail Blazers",
+        "teamSlug": "trail_blazers",
+        "teamKey": "PTB",
+        "wins": 33,
+        "losses": 49,
+        "winPct": 0.402,
+        "gb": 27,
+        "status": ""
+      },
+      {
+        "rank": 12,
+        "team": "Minnesota Timberwolves",
+        "teamSlug": "timberwolves",
+        "teamKey": "MIN",
+        "wins": 31,
+        "losses": 51,
+        "winPct": 0.378,
+        "gb": 29,
+        "status": ""
+      },
+      {
+        "rank": 13,
+        "team": "Sacramento Kings",
+        "teamSlug": "kings",
+        "teamKey": "SAC",
+        "wins": 28,
+        "losses": 54,
+        "winPct": 0.341,
+        "gb": 32,
+        "status": ""
+      },
+      {
+        "rank": 14,
+        "team": "New Orleans Hornets",
+        "teamSlug": "hornets",
+        "teamKey": "NOH",
+        "wins": 27,
+        "losses": 55,
+        "winPct": 0.329,
+        "gb": 33,
+        "status": ""
+      },
+      {
+        "rank": 15,
+        "team": "Phoenix Suns",
+        "teamSlug": "suns",
+        "teamKey": "PHO",
+        "wins": 25,
+        "losses": 57,
+        "winPct": 0.305,
+        "gb": 35,
+        "status": ""
+      }
+    ]
+  },
+  "divisions": {
+    "Northwest": [
+      {
+        "rank": 1,
+        "team": "Oklahoma City Thunder",
+        "teamSlug": "thunder",
+        "teamKey": "OKC",
+        "wins": 60,
+        "losses": 22,
+        "winPct": 0.732,
+        "gb": 0,
+        "status": "p"
+      },
+      {
+        "rank": 2,
+        "team": "Denver Nuggets",
+        "teamSlug": "nuggets",
+        "teamKey": "DEN",
+        "wins": 57,
+        "losses": 25,
+        "winPct": 0.695,
+        "gb": 3,
+        "status": "p"
+      },
+      {
+        "rank": 3,
+        "team": "Utah Jazz",
+        "teamSlug": "jazz",
+        "teamKey": "UTA",
+        "wins": 43,
+        "losses": 39,
+        "winPct": 0.524,
+        "gb": 17,
+        "status": ""
+      },
+      {
+        "rank": 4,
+        "team": "Portland Trail Blazers",
+        "teamSlug": "trail_blazers",
+        "teamKey": "PTB",
+        "wins": 33,
+        "losses": 49,
+        "winPct": 0.402,
+        "gb": 27,
+        "status": ""
+      },
+      {
+        "rank": 5,
+        "team": "Minnesota Timberwolves",
+        "teamSlug": "timberwolves",
+        "teamKey": "MIN",
+        "wins": 31,
+        "losses": 51,
+        "winPct": 0.378,
+        "gb": 29,
+        "status": ""
+      }
+    ],
+    "Pacific": [
+      {
+        "rank": 1,
+        "team": "Los Angeles Clippers",
+        "teamSlug": "clippers",
+        "teamKey": "LAC",
+        "wins": 56,
+        "losses": 26,
+        "winPct": 0.683,
+        "gb": 0,
+        "status": "p"
+      },
+      {
+        "rank": 2,
+        "team": "Golden State Warriors",
+        "teamSlug": "warriors",
+        "teamKey": "GSW",
+        "wins": 47,
+        "losses": 35,
+        "winPct": 0.573,
+        "gb": 9,
+        "status": "p"
+      },
+      {
+        "rank": 3,
+        "team": "Los Angeles Lakers",
+        "teamSlug": "lakers",
+        "teamKey": "LAL",
+        "wins": 45,
+        "losses": 37,
+        "winPct": 0.549,
+        "gb": 11,
+        "status": "p"
+      },
+      {
+        "rank": 4,
+        "team": "Sacramento Kings",
+        "teamSlug": "kings",
+        "teamKey": "SAC",
+        "wins": 28,
+        "losses": 54,
+        "winPct": 0.341,
+        "gb": 28,
+        "status": ""
+      },
+      {
+        "rank": 5,
+        "team": "Phoenix Suns",
+        "teamSlug": "suns",
+        "teamKey": "PHO",
+        "wins": 25,
+        "losses": 57,
+        "winPct": 0.305,
+        "gb": 31,
+        "status": ""
+      }
+    ],
+    "Southwest": [
+      {
+        "rank": 1,
+        "team": "San Antonio Spurs",
+        "teamSlug": "spurs",
+        "teamKey": "SAS",
+        "wins": 58,
+        "losses": 24,
+        "winPct": 0.707,
+        "gb": 0,
+        "status": "p"
+      },
+      {
+        "rank": 2,
+        "team": "Memphis Grizzlies",
+        "teamSlug": "grizzlies",
+        "teamKey": "MEM",
+        "wins": 56,
+        "losses": 26,
+        "winPct": 0.683,
+        "gb": 2,
+        "status": "p"
+      },
+      {
+        "rank": 3,
+        "team": "Houston Rockets",
+        "teamSlug": "rockets",
+        "teamKey": "HOU",
+        "wins": 45,
+        "losses": 37,
+        "winPct": 0.549,
+        "gb": 13,
+        "status": "p"
+      },
+      {
+        "rank": 4,
+        "team": "Dallas Mavericks",
+        "teamSlug": "mavericks",
+        "teamKey": "DAL",
+        "wins": 41,
+        "losses": 41,
+        "winPct": 0.5,
+        "gb": 17,
+        "status": ""
+      },
+      {
+        "rank": 5,
+        "team": "New Orleans Hornets",
+        "teamSlug": "hornets",
+        "teamKey": "NOH",
+        "wins": 27,
+        "losses": 55,
+        "winPct": 0.329,
+        "gb": 31,
+        "status": ""
+      }
+    ],
+    "Atlantic": [
+      {
+        "rank": 1,
+        "team": "New York Knicks",
+        "teamSlug": "knicks",
+        "teamKey": "NYK",
+        "wins": 54,
+        "losses": 28,
+        "winPct": 0.659,
+        "gb": 0,
+        "status": "p"
+      },
+      {
+        "rank": 2,
+        "team": "Brooklyn Nets",
+        "teamSlug": "nets",
+        "teamKey": "BKN",
+        "wins": 49,
+        "losses": 33,
+        "winPct": 0.598,
+        "gb": 5,
+        "status": "p"
+      },
+      {
+        "rank": 3,
+        "team": "Boston Celtics",
+        "teamSlug": "celtics",
+        "teamKey": "BOS",
+        "wins": 41,
+        "losses": 40,
+        "winPct": 0.506,
+        "gb": 12.5,
+        "status": "p"
+      },
+      {
+        "rank": 4,
+        "team": "Philadelphia 76ers",
+        "teamSlug": "76ers",
+        "teamKey": "PHI",
+        "wins": 34,
+        "losses": 48,
+        "winPct": 0.415,
+        "gb": 20,
+        "status": ""
+      },
+      {
+        "rank": 5,
+        "team": "Toronto Raptors",
+        "teamSlug": "raptors",
+        "teamKey": "TOR",
+        "wins": 34,
+        "losses": 48,
+        "winPct": 0.415,
+        "gb": 20,
+        "status": ""
+      }
+    ],
+    "Central": [
+      {
+        "rank": 1,
+        "team": "Indiana Pacers",
+        "teamSlug": "pacers",
+        "teamKey": "IND",
+        "wins": 49,
+        "losses": 32,
+        "winPct": 0.605,
+        "gb": 0,
+        "status": "p"
+      },
+      {
+        "rank": 2,
+        "team": "Chicago Bulls",
+        "teamSlug": "bulls",
+        "teamKey": "CHI",
+        "wins": 45,
+        "losses": 37,
+        "winPct": 0.549,
+        "gb": 4.5,
+        "status": "p"
+      },
+      {
+        "rank": 3,
+        "team": "Milwaukee Bucks",
+        "teamSlug": "bucks",
+        "teamKey": "MIL",
+        "wins": 38,
+        "losses": 44,
+        "winPct": 0.463,
+        "gb": 11.5,
+        "status": "p"
+      },
+      {
+        "rank": 4,
+        "team": "Detroit Pistons",
+        "teamSlug": "pistons",
+        "teamKey": "DET",
+        "wins": 29,
+        "losses": 53,
+        "winPct": 0.354,
+        "gb": 20.5,
+        "status": ""
+      },
+      {
+        "rank": 5,
+        "team": "Cleveland Cavaliers",
+        "teamSlug": "cavaliers",
+        "teamKey": "CLE",
+        "wins": 24,
+        "losses": 58,
+        "winPct": 0.293,
+        "gb": 25.5,
+        "status": ""
+      }
+    ],
+    "Southeast": [
+      {
+        "rank": 1,
+        "team": "Miami Heat",
+        "teamSlug": "heat",
+        "teamKey": "MIA",
+        "wins": 66,
+        "losses": 16,
+        "winPct": 0.805,
+        "gb": 0,
+        "status": "p"
+      },
+      {
+        "rank": 2,
+        "team": "Atlanta Hawks",
+        "teamSlug": "hawks",
+        "teamKey": "ATL",
+        "wins": 44,
+        "losses": 38,
+        "winPct": 0.537,
+        "gb": 22,
+        "status": "p"
+      },
+      {
+        "rank": 3,
+        "team": "Washington Wizards",
+        "teamSlug": "wizards",
+        "teamKey": "WAS",
+        "wins": 29,
+        "losses": 53,
+        "winPct": 0.354,
+        "gb": 37,
+        "status": ""
+      },
+      {
+        "rank": 4,
+        "team": "Charlotte Bobcats",
+        "teamSlug": "bobcats",
+        "teamKey": null,
+        "wins": 21,
+        "losses": 61,
+        "winPct": 0.256,
+        "gb": 45,
+        "status": ""
+      },
+      {
+        "rank": 5,
+        "team": "Orlando Magic",
+        "teamSlug": "magic",
+        "teamKey": "ORL",
+        "wins": 20,
+        "losses": 62,
+        "winPct": 0.244,
+        "gb": 46,
+        "status": ""
+      }
+    ]
+  }
+}

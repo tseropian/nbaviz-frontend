@@ -1,0 +1,136 @@
+{
+  "season": 1947,
+  "scrapedAt": "2026-06-12T20:20:07.172Z",
+  "source": "landofbasketball",
+  "conferences": {
+    "E": [],
+    "W": []
+  },
+  "divisions": {
+    "Western": [
+      {
+        "rank": 1,
+        "team": "Chicago Stags",
+        "teamSlug": "stags",
+        "teamKey": null,
+        "wins": 39,
+        "losses": 22,
+        "winPct": 0.639,
+        "gb": 0,
+        "status": "p"
+      },
+      {
+        "rank": 2,
+        "team": "St. Louis Bombers",
+        "teamSlug": "bombers",
+        "teamKey": null,
+        "wins": 38,
+        "losses": 23,
+        "winPct": 0.623,
+        "gb": 1,
+        "status": "p"
+      },
+      {
+        "rank": 3,
+        "team": "Cleveland Rebels",
+        "teamSlug": "rebels",
+        "teamKey": null,
+        "wins": 30,
+        "losses": 30,
+        "winPct": 0.5,
+        "gb": 8.5,
+        "status": "p"
+      },
+      {
+        "rank": 4,
+        "team": "Detroit Falcons",
+        "teamSlug": "falcons",
+        "teamKey": null,
+        "wins": 20,
+        "losses": 40,
+        "winPct": 0.333,
+        "gb": 18.5,
+        "status": ""
+      },
+      {
+        "rank": 5,
+        "team": "Pittsburgh Ironmen",
+        "teamSlug": "ironmen",
+        "teamKey": null,
+        "wins": 15,
+        "losses": 45,
+        "winPct": 0.25,
+        "gb": 23.5,
+        "status": ""
+      }
+    ],
+    "Eastern": [
+      {
+        "rank": 1,
+        "team": "Washington Capitols",
+        "teamSlug": "capitols",
+        "teamKey": null,
+        "wins": 49,
+        "losses": 11,
+        "winPct": 0.817,
+        "gb": 0,
+        "status": "p"
+      },
+      {
+        "rank": 2,
+        "team": "Philadelphia Warriors",
+        "teamSlug": "warriors",
+        "teamKey": null,
+        "wins": 35,
+        "losses": 25,
+        "winPct": 0.583,
+        "gb": 14,
+        "status": "p"
+      },
+      {
+        "rank": 3,
+        "team": "New York Knicks",
+        "teamSlug": "knicks",
+        "teamKey": "NYK",
+        "wins": 33,
+        "losses": 27,
+        "winPct": 0.55,
+        "gb": 16,
+        "status": "p"
+      },
+      {
+        "rank": 4,
+        "team": "Providence Steamrollers",
+        "teamSlug": "steam_rollers",
+        "teamKey": null,
+        "wins": 28,
+        "losses": 32,
+        "winPct": 0.467,
+        "gb": 21,
+        "status": ""
+      },
+      {
+        "rank": 5,
+        "team": "Toronto Huskies",
+        "teamSlug": "huskies",
+        "teamKey": null,
+        "wins": 22,
+        "losses": 38,
+        "winPct": 0.367,
+        "gb": 27,
+        "status": ""
+      },
+      {
+        "rank": 6,
+        "team": "Boston Celtics",
+        "teamSlug": "celtics",
+        "teamKey": "BOS",
+        "wins": 22,
+        "losses": 38,
+        "winPct": 0.367,
+        "gb": 27,
+        "status": ""
+      }
+    ]
+  }
+}

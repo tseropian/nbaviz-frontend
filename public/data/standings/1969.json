@@ -1,0 +1,169 @@
+{
+  "season": 1969,
+  "scrapedAt": "2026-06-12T20:16:51.831Z",
+  "source": "landofbasketball",
+  "conferences": {
+    "E": [],
+    "W": []
+  },
+  "divisions": {
+    "Western": [
+      {
+        "rank": 1,
+        "team": "Los Angeles Lakers",
+        "teamSlug": "lakers",
+        "teamKey": "LAL",
+        "wins": 55,
+        "losses": 27,
+        "winPct": 0.671,
+        "gb": 0,
+        "status": "p"
+      },
+      {
+        "rank": 2,
+        "team": "Atlanta Hawks",
+        "teamSlug": "hawks",
+        "teamKey": "ATL",
+        "wins": 48,
+        "losses": 34,
+        "winPct": 0.585,
+        "gb": 7,
+        "status": "p"
+      },
+      {
+        "rank": 3,
+        "team": "San Francisco Warriors",
+        "teamSlug": "warriors",
+        "teamKey": null,
+        "wins": 41,
+        "losses": 41,
+        "winPct": 0.5,
+        "gb": 14,
+        "status": "p"
+      },
+      {
+        "rank": 4,
+        "team": "San Diego Rockets",
+        "teamSlug": "rockets",
+        "teamKey": null,
+        "wins": 37,
+        "losses": 45,
+        "winPct": 0.451,
+        "gb": 18,
+        "status": "p"
+      },
+      {
+        "rank": 5,
+        "team": "Chicago Bulls",
+        "teamSlug": "bulls",
+        "teamKey": "CHI",
+        "wins": 33,
+        "losses": 49,
+        "winPct": 0.402,
+        "gb": 22,
+        "status": ""
+      },
+      {
+        "rank": 6,
+        "team": "Seattle Supersonics",
+        "teamSlug": "supersonics",
+        "teamKey": "SEA",
+        "wins": 30,
+        "losses": 52,
+        "winPct": 0.366,
+        "gb": 25,
+        "status": ""
+      },
+      {
+        "rank": 7,
+        "team": "Phoenix Suns",
+        "teamSlug": "suns",
+        "teamKey": "PHO",
+        "wins": 16,
+        "losses": 66,
+        "winPct": 0.195,
+        "gb": 39,
+        "status": ""
+      }
+    ],
+    "Eastern": [
+      {
+        "rank": 1,
+        "team": "Baltimore Bullets",
+        "teamSlug": "bullets",
+        "teamKey": null,
+        "wins": 57,
+        "losses": 25,
+        "winPct": 0.695,
+        "gb": 0,
+        "status": "p"
+      },
+      {
+        "rank": 2,
+        "team": "Philadelphia 76ers",
+        "teamSlug": "76ers",
+        "teamKey": "PHI",
+        "wins": 55,
+        "losses": 27,
+        "winPct": 0.671,
+        "gb": 2,
+        "status": "p"
+      },
+      {
+        "rank": 3,
+        "team": "New York Knicks",
+        "teamSlug": "knicks",
+        "teamKey": "NYK",
+        "wins": 54,
+        "losses": 28,
+        "winPct": 0.659,
+        "gb": 3,
+        "status": "p"
+      },
+      {
+        "rank": 4,
+        "team": "Boston Celtics",
+        "teamSlug": "celtics",
+        "teamKey": "BOS",
+        "wins": 48,
+        "losses": 34,
+        "winPct": 0.585,
+        "gb": 9,
+        "status": "p"
+      },
+      {
+        "rank": 5,
+        "team": "Cincinnati Royals",
+        "teamSlug": "royals",
+        "teamKey": null,
+        "wins": 41,
+        "losses": 41,
+        "winPct": 0.5,
+        "gb": 16,
+        "status": ""
+      },
+      {
+        "rank": 6,
+        "team": "Detroit Pistons",
+        "teamSlug": "pistons",
+        "teamKey": "DET",
+        "wins": 32,
+        "losses": 50,
+        "winPct": 0.39,
+        "gb": 25,
+        "status": ""
+      },
+      {
+        "rank": 7,
+        "team": "Milwaukee Bucks",
+        "teamSlug": "bucks",
+        "teamKey": "MIL",
+        "wins": 27,
+        "losses": 55,
+        "winPct": 0.329,
+        "gb": 30,
+        "status": ""
+      }
+    ]
+  }
+}

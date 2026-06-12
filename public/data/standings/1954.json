@@ -1,0 +1,114 @@
+{
+  "season": 1954,
+  "scrapedAt": "2026-06-12T20:21:09.701Z",
+  "source": "landofbasketball",
+  "conferences": {
+    "E": [],
+    "W": []
+  },
+  "divisions": {
+    "Western": [
+      {
+        "rank": 1,
+        "team": "Minneapolis Lakers",
+        "teamSlug": "lakers",
+        "teamKey": null,
+        "wins": 46,
+        "losses": 26,
+        "winPct": 0.639,
+        "gb": 0,
+        "status": "p"
+      },
+      {
+        "rank": 2,
+        "team": "Rochester Royals",
+        "teamSlug": "royals",
+        "teamKey": null,
+        "wins": 44,
+        "losses": 28,
+        "winPct": 0.611,
+        "gb": 2,
+        "status": "p"
+      },
+      {
+        "rank": 3,
+        "team": "Fort Wayne Pistons",
+        "teamSlug": "pistons",
+        "teamKey": null,
+        "wins": 40,
+        "losses": 32,
+        "winPct": 0.556,
+        "gb": 6,
+        "status": "p"
+      },
+      {
+        "rank": 4,
+        "team": "Milwaukee Hawks",
+        "teamSlug": "hawks",
+        "teamKey": null,
+        "wins": 21,
+        "losses": 51,
+        "winPct": 0.292,
+        "gb": 25,
+        "status": ""
+      }
+    ],
+    "Eastern": [
+      {
+        "rank": 1,
+        "team": "New York Knicks",
+        "teamSlug": "knicks",
+        "teamKey": "NYK",
+        "wins": 44,
+        "losses": 28,
+        "winPct": 0.611,
+        "gb": 0,
+        "status": "p"
+      },
+      {
+        "rank": 2,
+        "team": "Syracuse Nationals",
+        "teamSlug": "nationals",
+        "teamKey": null,
+        "wins": 42,
+        "losses": 30,
+        "winPct": 0.583,
+        "gb": 2,
+        "status": "p"
+      },
+      {
+        "rank": 3,
+        "team": "Boston Celtics",
+        "teamSlug": "celtics",
+        "teamKey": "BOS",
+        "wins": 42,
+        "losses": 30,
+        "winPct": 0.583,
+        "gb": 2,
+        "status": "p"
+      },
+      {
+        "rank": 4,
+        "team": "Philadelphia Warriors",
+        "teamSlug": "warriors",
+        "teamKey": null,
+        "wins": 29,
+        "losses": 43,
+        "winPct": 0.403,
+        "gb": 15,
+        "status": ""
+      },
+      {
+        "rank": 5,
+        "team": "Baltimore Bullets (1st)",
+        "teamSlug": "bullets1",
+        "teamKey": null,
+        "wins": 16,
+        "losses": 56,
+        "winPct": 0.222,
+        "gb": 28,
+        "status": ""
+      }
+    ]
+  }
+}
