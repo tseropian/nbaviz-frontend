@@ -39,7 +39,7 @@
             v-for="tick in ticks"
             :key="tick"
             class="heatmap-tick"
-            :style="{ left: (tick / maxWins * 100) + '%' }"
+            :style="{ left: ((tick - scaleMin) / (scaleMax - scaleMin) * 100) + '%' }"
           >
             <span class="heatmap-tick-label">{{ tick }}</span>
           </div>
@@ -47,7 +47,7 @@
       </div>
 
       <div style="margin-top: 2em; padding: 2em; text-align: center; margin:0 auto;border: 1px solid #2f363d; border-radius: 5px;">
-        Each team is placed on a scale from 0 to {{ maxWins }} wins, showing how many regular season games it won. Hover over a team to see its full win-loss record. Warmer colours indicate more wins.
+        Each team is placed on a scale from {{ scaleMin }} to {{ scaleMax }} wins, showing how many regular season games it won. Hover over a team to see its full win-loss record. Warmer colours indicate more wins.
         <p style="text-align:left;margin-top: 2em;">
           NB: This website is still in beta mode. There may be some inaccuracies with some of the data.
           <a href="/#/contact">Feel free to reach out</a> if you have any comment or if you want to receive updates on future releases.
@@ -122,10 +122,25 @@ export default {
     years: Array.from({ length: 81 }, (_, i) => 2026 - i),
     teams: [],
     loading: true,
-    maxWins: 75,
-    ticks: [0, 10, 20, 30, 40, 50, 60, 70, 75],
   }),
   computed: {
+    scaleMin() {
+      if (this.teams.length === 0) return 0;
+      const minWins = Math.min(...this.teams.map(t => t.wins));
+      return Math.max(0, Math.floor(minWins / 10) * 10);
+    },
+    scaleMax() {
+      if (this.teams.length === 0) return this.scaleMin + 10;
+      const maxWins = Math.max(...this.teams.map(t => t.wins));
+      return Math.max(this.scaleMin + 10, Math.ceil(maxWins / 10) * 10);
+    },
+    ticks() {
+      const ticks = [];
+      for (let t = this.scaleMin; t <= this.scaleMax; t += 10) {
+        ticks.push(t);
+      }
+      return ticks;
+    },
     placedTeams() {
       const groups = {};
       for (const team of this.teams) {
@@ -133,12 +148,13 @@ export default {
         groups[team.wins].push(team);
       }
 
+      const range = this.scaleMax - this.scaleMin;
       const placed = [];
       for (const wins of Object.keys(groups)) {
         groups[wins].forEach((team, stack) => {
           placed.push({
             ...team,
-            position: (Number(wins) / this.maxWins) * 100,
+            position: ((Number(wins) - this.scaleMin) / range) * 100,
             color: this.heatColor(Number(wins)),
             stack,
           });
@@ -177,7 +193,8 @@ export default {
       }
     },
     heatColor(wins) {
-      const ratio = Math.min(Math.max(wins / this.maxWins, 0), 1);
+      const range = this.scaleMax - this.scaleMin;
+      const ratio = Math.min(Math.max((wins - this.scaleMin) / range, 0), 1);
       const hue = 220 - (220 * ratio);
       return `hsl(${hue}, 70%, 45%)`;
     },
