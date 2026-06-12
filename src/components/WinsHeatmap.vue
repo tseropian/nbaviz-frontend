@@ -22,7 +22,7 @@
         <div v-else-if="placedTeams.length === 0" style="height: 300px; display: flex; align-items: center; justify-content: center;">
           No data available for {{ year }}
         </div>
-        <div v-else class="heatmap-scale" :style="{ height: scaleHeight + 'px' }">
+        <div v-else ref="scale" class="heatmap-scale" :style="{ height: scaleHeight + 'px' }">
           <div class="heatmap-markers">
             <div
               v-for="t in placedTeams"
@@ -122,6 +122,8 @@ export default {
     years: Array.from({ length: 81 }, (_, i) => 2026 - i),
     teams: [],
     loading: true,
+    rows: {},
+    resizeTimeout: null,
   }),
   computed: {
     scaleMin() {
@@ -142,25 +144,13 @@ export default {
       return ticks;
     },
     placedTeams() {
-      const groups = {};
-      for (const team of this.teams) {
-        groups[team.wins] = groups[team.wins] || [];
-        groups[team.wins].push(team);
-      }
-
       const range = this.scaleMax - this.scaleMin;
-      const placed = [];
-      for (const wins of Object.keys(groups)) {
-        groups[wins].forEach((team, stack) => {
-          placed.push({
-            ...team,
-            position: ((Number(wins) - this.scaleMin) / range) * 100,
-            color: this.heatColor(Number(wins)),
-            stack,
-          });
-        });
-      }
-      return placed;
+      return this.teams.map(team => ({
+        ...team,
+        position: ((team.wins - this.scaleMin) / range) * 100,
+        color: this.heatColor(team.wins),
+        stack: this.rows[team.teamKey] || 0,
+      }));
     },
     scaleHeight() {
       const maxStack = this.placedTeams.reduce((max, t) => Math.max(max, t.stack), 0);
@@ -175,10 +165,16 @@ export default {
   },
   async mounted() {
     await this.fetchStandings();
+    window.addEventListener('resize', this.onResize);
+  },
+  unmounted() {
+    window.removeEventListener('resize', this.onResize);
+    clearTimeout(this.resizeTimeout);
   },
   methods: {
     async fetchStandings() {
       this.loading = true;
+      this.rows = {};
       try {
         const response = await fetch(`/data/standings/${this.year}.json`);
         const data = await response.json();
@@ -191,12 +187,51 @@ export default {
       } finally {
         this.loading = false;
       }
+      await this.$nextTick();
+      this.computeLayout();
     },
     heatColor(wins) {
       const range = this.scaleMax - this.scaleMin;
       const ratio = Math.min(Math.max((wins - this.scaleMin) / range, 0), 1);
       const hue = 220 - (220 * ratio);
       return `hsl(${hue}, 70%, 45%)`;
+    },
+    // Spreads teams that would visually overlap onto separate rows, based on
+    // their actual rendered positions, so close win totals don't collide.
+    computeLayout() {
+      const scaleEl = this.$refs.scale;
+      if (!scaleEl || this.teams.length === 0) return;
+
+      const width = scaleEl.getBoundingClientRect().width;
+      if (!width) return;
+
+      const range = this.scaleMax - this.scaleMin;
+      const minGapPx = 52;
+
+      const xPositions = this.teams
+        .map(team => ({
+          teamKey: team.teamKey,
+          x: ((team.wins - this.scaleMin) / range) * width,
+        }))
+        .sort((a, b) => a.x - b.x);
+
+      const rowLastX = [];
+      const rows = {};
+      for (const { teamKey, x } of xPositions) {
+        let row = rowLastX.findIndex(lastX => x - lastX >= minGapPx);
+        if (row === -1) {
+          row = rowLastX.length;
+          rowLastX.push(x);
+        } else {
+          rowLastX[row] = x;
+        }
+        rows[teamKey] = row;
+      }
+      this.rows = rows;
+    },
+    onResize() {
+      clearTimeout(this.resizeTimeout);
+      this.resizeTimeout = setTimeout(() => this.computeLayout(), 150);
     },
     async onChangeYear() {
       this.$router.push({ path: `/wins-heatmap/${this.year}` });
