@@ -122,8 +122,8 @@ export default {
     years: Array.from({ length: 81 }, (_, i) => 2026 - i),
     teams: [],
     loading: true,
-    maxWins: 82,
-    ticks: [0, 10, 20, 30, 40, 50, 60, 70, 80, 82],
+    maxWins: 75,
+    ticks: [0, 10, 20, 30, 40, 50, 60, 70, 75],
   }),
   computed: {
     placedTeams() {
