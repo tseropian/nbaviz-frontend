@@ -115,6 +115,26 @@
 </style>
 
 <script>
+// Historical franchises whose teamKey is missing from the standings data,
+// keyed by the team name as it appears in that data.
+const LEGACY_TEAM_KEYS = {
+  'Baltimore Bullets': 'BAL',
+  'Buffalo Braves': 'BUF',
+  'Capital Bullets': 'CAP',
+  'Charlotte Bobcats': 'CHA',
+  'Cincinnati Royals': 'CIN',
+  'Kansas City Kings': 'KCK',
+  'Kansas City-Omaha Kings': 'KCO',
+  'New Orleans Jazz': 'NOJ',
+  'New Orleans/Oklahoma City Hornets': 'NOK',
+  'New York Nets': 'NYN',
+  'San Diego Clippers': 'SDC',
+  'San Diego Rockets': 'SDR',
+  'San Francisco Warriors': 'SFW',
+  'Vancouver Grizzlies': 'VAN',
+  'Washington Bullets': 'WSB',
+};
+
 export default {
   name: 'WinsHeatmap',
   data: () => ({
@@ -178,8 +198,13 @@ export default {
       try {
         const response = await fetch(`/data/standings/${this.year}.json`);
         const data = await response.json();
-        const east = (data.conferences.E || []).map(t => ({ ...t, conference: 'E' }));
-        const west = (data.conferences.W || []).map(t => ({ ...t, conference: 'W' }));
+        const withKey = (t, conference) => ({
+          ...t,
+          conference,
+          teamKey: t.teamKey || LEGACY_TEAM_KEYS[t.team] || t.teamSlug.slice(0, 3).toUpperCase(),
+        });
+        const east = (data.conferences.E || []).map(t => withKey(t, 'E'));
+        const west = (data.conferences.W || []).map(t => withKey(t, 'W'));
         this.teams = [...east, ...west];
       } catch (err) {
         console.log(err);
