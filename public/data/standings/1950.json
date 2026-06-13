@@ -1,0 +1,204 @@
+{
+  "season": 1950,
+  "scrapedAt": "2026-06-12T20:20:33.825Z",
+  "source": "landofbasketball",
+  "conferences": {
+    "E": [],
+    "W": []
+  },
+  "divisions": {
+    "Western": [
+      {
+        "rank": 1,
+        "team": "Indianapolis Olympians",
+        "teamSlug": "olympians",
+        "teamKey": null,
+        "wins": 39,
+        "losses": 25,
+        "winPct": 0.609,
+        "gb": 0,
+        "status": "p"
+      },
+      {
+        "rank": 2,
+        "team": "Anderson Packers",
+        "teamSlug": "packers1",
+        "teamKey": null,
+        "wins": 37,
+        "losses": 27,
+        "winPct": 0.578,
+        "gb": 2,
+        "status": "p"
+      },
+      {
+        "rank": 3,
+        "team": "Tri-Cities Blackhawks",
+        "teamSlug": "blackhawks",
+        "teamKey": null,
+        "wins": 29,
+        "losses": 35,
+        "winPct": 0.453,
+        "gb": 10,
+        "status": "p"
+      },
+      {
+        "rank": 4,
+        "team": "Sheboygan Red Skins",
+        "teamSlug": "red_skins",
+        "teamKey": null,
+        "wins": 22,
+        "losses": 40,
+        "winPct": 0.355,
+        "gb": 16,
+        "status": "p"
+      },
+      {
+        "rank": 5,
+        "team": "Waterloo Hawks",
+        "teamSlug": "whawks",
+        "teamKey": null,
+        "wins": 19,
+        "losses": 43,
+        "winPct": 0.306,
+        "gb": 19,
+        "status": ""
+      },
+      {
+        "rank": 6,
+        "team": "Denver Nuggets (1st)",
+        "teamSlug": "nuggets1",
+        "teamKey": null,
+        "wins": 11,
+        "losses": 51,
+        "winPct": 0.177,
+        "gb": 27,
+        "status": ""
+      }
+    ],
+    "Eastern": [
+      {
+        "rank": 1,
+        "team": "Syracuse Nationals",
+        "teamSlug": "nationals",
+        "teamKey": null,
+        "wins": 51,
+        "losses": 13,
+        "winPct": 0.797,
+        "gb": 0,
+        "status": "p"
+      },
+      {
+        "rank": 2,
+        "team": "New York Knicks",
+        "teamSlug": "knicks",
+        "teamKey": "NYK",
+        "wins": 40,
+        "losses": 28,
+        "winPct": 0.588,
+        "gb": 13,
+        "status": "p"
+      },
+      {
+        "rank": 3,
+        "team": "Washington Capitols",
+        "teamSlug": "capitols",
+        "teamKey": null,
+        "wins": 32,
+        "losses": 36,
+        "winPct": 0.471,
+        "gb": 21,
+        "status": "p"
+      },
+      {
+        "rank": 4,
+        "team": "Philadelphia Warriors",
+        "teamSlug": "warriors",
+        "teamKey": null,
+        "wins": 26,
+        "losses": 42,
+        "winPct": 0.382,
+        "gb": 27,
+        "status": "p"
+      },
+      {
+        "rank": 5,
+        "team": "Baltimore Bullets (1st)",
+        "teamSlug": "bullets1",
+        "teamKey": null,
+        "wins": 25,
+        "losses": 43,
+        "winPct": 0.368,
+        "gb": 28,
+        "status": ""
+      },
+      {
+        "rank": 6,
+        "team": "Boston Celtics",
+        "teamSlug": "celtics",
+        "teamKey": "BOS",
+        "wins": 22,
+        "losses": 46,
+        "winPct": 0.324,
+        "gb": 31,
+        "status": ""
+      }
+    ],
+    "Central": [
+      {
+        "rank": 1,
+        "team": "Minneapolis Lakers",
+        "teamSlug": "lakers",
+        "teamKey": null,
+        "wins": 51,
+        "losses": 17,
+        "winPct": 0.75,
+        "gb": 0,
+        "status": "p"
+      },
+      {
+        "rank": 2,
+        "team": "Rochester Royals",
+        "teamSlug": "royals",
+        "teamKey": null,
+        "wins": 51,
+        "losses": 17,
+        "winPct": 0.75,
+        "gb": 0,
+        "status": "p"
+      },
+      {
+        "rank": 3,
+        "team": "Fort Wayne Pistons",
+        "teamSlug": "pistons",
+        "teamKey": null,
+        "wins": 40,
+        "losses": 28,
+        "winPct": 0.588,
+        "gb": 11,
+        "status": "p"
+      },
+      {
+        "rank": 4,
+        "team": "Chicago Stags",
+        "teamSlug": "stags",
+        "teamKey": null,
+        "wins": 40,
+        "losses": 28,
+        "winPct": 0.588,
+        "gb": 11,
+        "status": "p"
+      },
+      {
+        "rank": 5,
+        "team": "St. Louis Bombers",
+        "teamSlug": "bombers",
+        "teamKey": null,
+        "wins": 26,
+        "losses": 42,
+        "winPct": 0.382,
+        "gb": 25,
+        "status": ""
+      }
+    ]
+  }
+}
