@@ -13,6 +13,7 @@
     
     <h2>Updates</h2>
     <ul>
+      <li>- 2026-06-13: Added win heatmaps for all seasons since 1946.</li>
       <li>- 2025-08-31: Imported regular seasons 2022 to 2025.</li>
       <li>- 2021-05-17: 2021 regular season is here.</li>
       <li>- 2021-01-27: Imported regular seasons from 2010 to 2020</li>
